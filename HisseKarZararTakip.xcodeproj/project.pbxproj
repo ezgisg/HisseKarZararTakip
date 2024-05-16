@@ -1,0 +1,754 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB98B9582BF4D06F005665FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9572BF4D06F005665FB /* AppDelegate.swift */; };
+		AB98B95A2BF4D06F005665FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9592BF4D06F005665FB /* SceneDelegate.swift */; };
+		AB98B9622BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9602BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld */; };
+		AB98B9642BF4D070005665FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB98B9632BF4D070005665FB /* Assets.xcassets */; };
+		AB98B9672BF4D070005665FB /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AB98B9662BF4D070005665FB /* Base */; };
+		AB98B9722BF4D070005665FB /* HisseKarZararTakipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9712BF4D070005665FB /* HisseKarZararTakipTests.swift */; };
+		AB98B97C2BF4D070005665FB /* HisseKarZararTakipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B97B2BF4D070005665FB /* HisseKarZararTakipUITests.swift */; };
+		AB98B97E2BF4D070005665FB /* HisseKarZararTakipUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B97D2BF4D070005665FB /* HisseKarZararTakipUITestsLaunchTests.swift */; };
+		AB98B98C2BF4D0FC005665FB /* ShareList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B98B2BF4D0FC005665FB /* ShareList.swift */; };
+		AB98B98F2BF4D1DF005665FB /* ShareDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B98E2BF4D1DF005665FB /* ShareDetailList.swift */; };
+		AB98B9912BF4D2DF005665FB /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9902BF4D2DF005665FB /* ShareService.swift */; };
+		AB98B9942BF4D447005665FB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AB98B9932BF4D447005665FB /* Alamofire */; };
+		AB98B9962BF4D447005665FB /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = AB98B9952BF4D447005665FB /* AlamofireDynamic */; };
+		AB98B99C2BF4D7DF005665FB /* DataSaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B99A2BF4D7DF005665FB /* DataSaveViewController.swift */; };
+		AB98B99D2BF4D7DF005665FB /* DataSaveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB98B99B2BF4D7DF005665FB /* DataSaveViewController.xib */; };
+		AB98B9A02BF4D7F5005665FB /* DataShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B99E2BF4D7F5005665FB /* DataShowViewController.swift */; };
+		AB98B9A12BF4D7F5005665FB /* DataShowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB98B99F2BF4D7F5005665FB /* DataShowViewController.xib */; };
+		AB98B9A42BF4DA8F005665FB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9A32BF4DA8F005665FB /* TabBarController.swift */; };
+		AB98B9A72BF502BD005665FB /* DataSaveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9A62BF502BD005665FB /* DataSaveViewModel.swift */; };
+		AB9C923E2BF6289700993A2B /* ShareRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C923D2BF6289700993A2B /* ShareRepository.swift */; };
+		AB9C92412BF6298A00993A2B /* SavedShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C92402BF6298A00993A2B /* SavedShareModel.swift */; };
+		AB9C92432BF637EE00993A2B /* DataShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C92422BF637EE00993A2B /* DataShowViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AB98B96E2BF4D070005665FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB98B94C2BF4D06E005665FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB98B9532BF4D06F005665FB;
+			remoteInfo = HisseKarZararTakip;
+		};
+		AB98B9782BF4D070005665FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB98B94C2BF4D06E005665FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB98B9532BF4D06F005665FB;
+			remoteInfo = HisseKarZararTakip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AB98B9542BF4D06F005665FB /* HisseKarZararTakip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HisseKarZararTakip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB98B9572BF4D06F005665FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AB98B9592BF4D06F005665FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		AB98B9612BF4D06F005665FB /* HisseKarZararTakip.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HisseKarZararTakip.xcdatamodel; sourceTree = "<group>"; };
+		AB98B9632BF4D070005665FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AB98B9662BF4D070005665FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AB98B9682BF4D070005665FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB98B96D2BF4D070005665FB /* HisseKarZararTakipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HisseKarZararTakipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB98B9712BF4D070005665FB /* HisseKarZararTakipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HisseKarZararTakipTests.swift; sourceTree = "<group>"; };
+		AB98B9772BF4D070005665FB /* HisseKarZararTakipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HisseKarZararTakipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB98B97B2BF4D070005665FB /* HisseKarZararTakipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HisseKarZararTakipUITests.swift; sourceTree = "<group>"; };
+		AB98B97D2BF4D070005665FB /* HisseKarZararTakipUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HisseKarZararTakipUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AB98B98B2BF4D0FC005665FB /* ShareList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareList.swift; sourceTree = "<group>"; };
+		AB98B98E2BF4D1DF005665FB /* ShareDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDetailList.swift; sourceTree = "<group>"; };
+		AB98B9902BF4D2DF005665FB /* ShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
+		AB98B99A2BF4D7DF005665FB /* DataSaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSaveViewController.swift; sourceTree = "<group>"; };
+		AB98B99B2BF4D7DF005665FB /* DataSaveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataSaveViewController.xib; sourceTree = "<group>"; };
+		AB98B99E2BF4D7F5005665FB /* DataShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataShowViewController.swift; sourceTree = "<group>"; };
+		AB98B99F2BF4D7F5005665FB /* DataShowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataShowViewController.xib; sourceTree = "<group>"; };
+		AB98B9A32BF4DA8F005665FB /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		AB98B9A62BF502BD005665FB /* DataSaveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSaveViewModel.swift; sourceTree = "<group>"; };
+		AB9C923D2BF6289700993A2B /* ShareRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRepository.swift; sourceTree = "<group>"; };
+		AB9C92402BF6298A00993A2B /* SavedShareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedShareModel.swift; sourceTree = "<group>"; };
+		AB9C92422BF637EE00993A2B /* DataShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataShowViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AB98B9512BF4D06F005665FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB98B9942BF4D447005665FB /* Alamofire in Frameworks */,
+				AB98B9962BF4D447005665FB /* AlamofireDynamic in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB98B96A2BF4D070005665FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB98B9742BF4D070005665FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB98B94B2BF4D06E005665FB = {
+			isa = PBXGroup;
+			children = (
+				AB98B9562BF4D06F005665FB /* HisseKarZararTakip */,
+				AB98B9702BF4D070005665FB /* HisseKarZararTakipTests */,
+				AB98B97A2BF4D070005665FB /* HisseKarZararTakipUITests */,
+				AB98B9552BF4D06F005665FB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AB98B9552BF4D06F005665FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB98B9542BF4D06F005665FB /* HisseKarZararTakip.app */,
+				AB98B96D2BF4D070005665FB /* HisseKarZararTakipTests.xctest */,
+				AB98B9772BF4D070005665FB /* HisseKarZararTakipUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB98B9562BF4D06F005665FB /* HisseKarZararTakip */ = {
+			isa = PBXGroup;
+			children = (
+				AB9C923F2BF628EF00993A2B /* Model */,
+				AB98B9A52BF4ED6A005665FB /* Repostories */,
+				AB98B9972BF4D79A005665FB /* Scenes */,
+				AB98B98A2BF4D082005665FB /* API */,
+				AB98B9572BF4D06F005665FB /* AppDelegate.swift */,
+				AB98B9592BF4D06F005665FB /* SceneDelegate.swift */,
+				AB98B9632BF4D070005665FB /* Assets.xcassets */,
+				AB98B9652BF4D070005665FB /* LaunchScreen.storyboard */,
+				AB98B9682BF4D070005665FB /* Info.plist */,
+			);
+			path = HisseKarZararTakip;
+			sourceTree = "<group>";
+		};
+		AB98B9702BF4D070005665FB /* HisseKarZararTakipTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB98B9712BF4D070005665FB /* HisseKarZararTakipTests.swift */,
+			);
+			path = HisseKarZararTakipTests;
+			sourceTree = "<group>";
+		};
+		AB98B97A2BF4D070005665FB /* HisseKarZararTakipUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AB98B97B2BF4D070005665FB /* HisseKarZararTakipUITests.swift */,
+				AB98B97D2BF4D070005665FB /* HisseKarZararTakipUITestsLaunchTests.swift */,
+			);
+			path = HisseKarZararTakipUITests;
+			sourceTree = "<group>";
+		};
+		AB98B98A2BF4D082005665FB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				AB98B98D2BF4D0FF005665FB /* Model */,
+				AB98B9902BF4D2DF005665FB /* ShareService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		AB98B98D2BF4D0FF005665FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AB98B98B2BF4D0FC005665FB /* ShareList.swift */,
+				AB98B98E2BF4D1DF005665FB /* ShareDetailList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AB98B9972BF4D79A005665FB /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				AB98B9A22BF4DA55005665FB /* TabBar */,
+				AB98B9992BF4D7BC005665FB /* DataShow */,
+				AB98B9982BF4D7A3005665FB /* DataSave */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		AB98B9982BF4D7A3005665FB /* DataSave */ = {
+			isa = PBXGroup;
+			children = (
+				AB98B99A2BF4D7DF005665FB /* DataSaveViewController.swift */,
+				AB98B99B2BF4D7DF005665FB /* DataSaveViewController.xib */,
+				AB98B9A62BF502BD005665FB /* DataSaveViewModel.swift */,
+			);
+			path = DataSave;
+			sourceTree = "<group>";
+		};
+		AB98B9992BF4D7BC005665FB /* DataShow */ = {
+			isa = PBXGroup;
+			children = (
+				AB98B99E2BF4D7F5005665FB /* DataShowViewController.swift */,
+				AB98B99F2BF4D7F5005665FB /* DataShowViewController.xib */,
+				AB9C92422BF637EE00993A2B /* DataShowViewModel.swift */,
+			);
+			path = DataShow;
+			sourceTree = "<group>";
+		};
+		AB98B9A22BF4DA55005665FB /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				AB98B9A32BF4DA8F005665FB /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		AB98B9A52BF4ED6A005665FB /* Repostories */ = {
+			isa = PBXGroup;
+			children = (
+				AB98B9602BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld */,
+				AB9C923D2BF6289700993A2B /* ShareRepository.swift */,
+			);
+			path = Repostories;
+			sourceTree = "<group>";
+		};
+		AB9C923F2BF628EF00993A2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AB9C92402BF6298A00993A2B /* SavedShareModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AB98B9532BF4D06F005665FB /* HisseKarZararTakip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB98B9812BF4D070005665FB /* Build configuration list for PBXNativeTarget "HisseKarZararTakip" */;
+			buildPhases = (
+				AB98B9502BF4D06F005665FB /* Sources */,
+				AB98B9512BF4D06F005665FB /* Frameworks */,
+				AB98B9522BF4D06F005665FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HisseKarZararTakip;
+			packageProductDependencies = (
+				AB98B9932BF4D447005665FB /* Alamofire */,
+				AB98B9952BF4D447005665FB /* AlamofireDynamic */,
+			);
+			productName = HisseKarZararTakip;
+			productReference = AB98B9542BF4D06F005665FB /* HisseKarZararTakip.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AB98B96C2BF4D070005665FB /* HisseKarZararTakipTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB98B9842BF4D070005665FB /* Build configuration list for PBXNativeTarget "HisseKarZararTakipTests" */;
+			buildPhases = (
+				AB98B9692BF4D070005665FB /* Sources */,
+				AB98B96A2BF4D070005665FB /* Frameworks */,
+				AB98B96B2BF4D070005665FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB98B96F2BF4D070005665FB /* PBXTargetDependency */,
+			);
+			name = HisseKarZararTakipTests;
+			productName = HisseKarZararTakipTests;
+			productReference = AB98B96D2BF4D070005665FB /* HisseKarZararTakipTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AB98B9762BF4D070005665FB /* HisseKarZararTakipUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB98B9872BF4D070005665FB /* Build configuration list for PBXNativeTarget "HisseKarZararTakipUITests" */;
+			buildPhases = (
+				AB98B9732BF4D070005665FB /* Sources */,
+				AB98B9742BF4D070005665FB /* Frameworks */,
+				AB98B9752BF4D070005665FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB98B9792BF4D070005665FB /* PBXTargetDependency */,
+			);
+			name = HisseKarZararTakipUITests;
+			productName = HisseKarZararTakipUITests;
+			productReference = AB98B9772BF4D070005665FB /* HisseKarZararTakipUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AB98B94C2BF4D06E005665FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					AB98B9532BF4D06F005665FB = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					AB98B96C2BF4D070005665FB = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = AB98B9532BF4D06F005665FB;
+					};
+					AB98B9762BF4D070005665FB = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = AB98B9532BF4D06F005665FB;
+					};
+				};
+			};
+			buildConfigurationList = AB98B94F2BF4D06E005665FB /* Build configuration list for PBXProject "HisseKarZararTakip" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AB98B94B2BF4D06E005665FB;
+			packageReferences = (
+				AB98B9922BF4D447005665FB /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
+			productRefGroup = AB98B9552BF4D06F005665FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AB98B9532BF4D06F005665FB /* HisseKarZararTakip */,
+				AB98B96C2BF4D070005665FB /* HisseKarZararTakipTests */,
+				AB98B9762BF4D070005665FB /* HisseKarZararTakipUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AB98B9522BF4D06F005665FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB98B9642BF4D070005665FB /* Assets.xcassets in Resources */,
+				AB98B9672BF4D070005665FB /* Base in Resources */,
+				AB98B9A12BF4D7F5005665FB /* DataShowViewController.xib in Resources */,
+				AB98B99D2BF4D7DF005665FB /* DataSaveViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB98B96B2BF4D070005665FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB98B9752BF4D070005665FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AB98B9502BF4D06F005665FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB9C92432BF637EE00993A2B /* DataShowViewModel.swift in Sources */,
+				AB9C923E2BF6289700993A2B /* ShareRepository.swift in Sources */,
+				AB98B9582BF4D06F005665FB /* AppDelegate.swift in Sources */,
+				AB98B9A72BF502BD005665FB /* DataSaveViewModel.swift in Sources */,
+				AB9C92412BF6298A00993A2B /* SavedShareModel.swift in Sources */,
+				AB98B98F2BF4D1DF005665FB /* ShareDetailList.swift in Sources */,
+				AB98B9622BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld in Sources */,
+				AB98B9A42BF4DA8F005665FB /* TabBarController.swift in Sources */,
+				AB98B9A02BF4D7F5005665FB /* DataShowViewController.swift in Sources */,
+				AB98B98C2BF4D0FC005665FB /* ShareList.swift in Sources */,
+				AB98B9912BF4D2DF005665FB /* ShareService.swift in Sources */,
+				AB98B95A2BF4D06F005665FB /* SceneDelegate.swift in Sources */,
+				AB98B99C2BF4D7DF005665FB /* DataSaveViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB98B9692BF4D070005665FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB98B9722BF4D070005665FB /* HisseKarZararTakipTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB98B9732BF4D070005665FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB98B97C2BF4D070005665FB /* HisseKarZararTakipUITests.swift in Sources */,
+				AB98B97E2BF4D070005665FB /* HisseKarZararTakipUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AB98B96F2BF4D070005665FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB98B9532BF4D06F005665FB /* HisseKarZararTakip */;
+			targetProxy = AB98B96E2BF4D070005665FB /* PBXContainerItemProxy */;
+		};
+		AB98B9792BF4D070005665FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB98B9532BF4D06F005665FB /* HisseKarZararTakip */;
+			targetProxy = AB98B9782BF4D070005665FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AB98B9652BF4D070005665FB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB98B9662BF4D070005665FB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AB98B97F2BF4D070005665FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AB98B9802BF4D070005665FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AB98B9822BF4D070005665FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HisseKarZararTakip/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esgdev.HisseKarZararTakip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AB98B9832BF4D070005665FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HisseKarZararTakip/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esgdev.HisseKarZararTakip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AB98B9852BF4D070005665FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esgdev.HisseKarZararTakipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HisseKarZararTakip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HisseKarZararTakip";
+			};
+			name = Debug;
+		};
+		AB98B9862BF4D070005665FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esgdev.HisseKarZararTakipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HisseKarZararTakip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HisseKarZararTakip";
+			};
+			name = Release;
+		};
+		AB98B9882BF4D070005665FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esgdev.HisseKarZararTakipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HisseKarZararTakip;
+			};
+			name = Debug;
+		};
+		AB98B9892BF4D070005665FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esgdev.HisseKarZararTakipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HisseKarZararTakip;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AB98B94F2BF4D06E005665FB /* Build configuration list for PBXProject "HisseKarZararTakip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB98B97F2BF4D070005665FB /* Debug */,
+				AB98B9802BF4D070005665FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB98B9812BF4D070005665FB /* Build configuration list for PBXNativeTarget "HisseKarZararTakip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB98B9822BF4D070005665FB /* Debug */,
+				AB98B9832BF4D070005665FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB98B9842BF4D070005665FB /* Build configuration list for PBXNativeTarget "HisseKarZararTakipTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB98B9852BF4D070005665FB /* Debug */,
+				AB98B9862BF4D070005665FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB98B9872BF4D070005665FB /* Build configuration list for PBXNativeTarget "HisseKarZararTakipUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB98B9882BF4D070005665FB /* Debug */,
+				AB98B9892BF4D070005665FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AB98B9922BF4D447005665FB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AB98B9932BF4D447005665FB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB98B9922BF4D447005665FB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		AB98B9952BF4D447005665FB /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB98B9922BF4D447005665FB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		AB98B9602BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AB98B9612BF4D06F005665FB /* HisseKarZararTakip.xcdatamodel */,
+			);
+			currentVersion = AB98B9612BF4D06F005665FB /* HisseKarZararTakip.xcdatamodel */;
+			path = HisseKarZararTakip.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = AB98B94C2BF4D06E005665FB /* Project object */;
+}
