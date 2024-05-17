@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		AB9451542BF75EEA00D65FC2 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9451532BF75EEA00D65FC2 /* UIViewController+Alert.swift */; };
+		AB9451562BF789C100D65FC2 /* UICollectionViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9451552BF789C100D65FC2 /* UICollectionViewCell+Extensions.swift */; };
+		AB9451582BF789F800D65FC2 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9451572BF789F800D65FC2 /* UICollectionView+Extensions.swift */; };
+		AB94515C2BF78A5400D65FC2 /* ShareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB94515A2BF78A5400D65FC2 /* ShareCollectionViewCell.swift */; };
+		AB94515D2BF78A5400D65FC2 /* ShareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB94515B2BF78A5400D65FC2 /* ShareCollectionViewCell.xib */; };
 		AB98B9582BF4D06F005665FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9572BF4D06F005665FB /* AppDelegate.swift */; };
 		AB98B95A2BF4D06F005665FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9592BF4D06F005665FB /* SceneDelegate.swift */; };
 		AB98B9622BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9602BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld */; };
@@ -51,6 +55,10 @@
 
 /* Begin PBXFileReference section */
 		AB9451532BF75EEA00D65FC2 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		AB9451552BF789C100D65FC2 /* UICollectionViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		AB9451572BF789F800D65FC2 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		AB94515A2BF78A5400D65FC2 /* ShareCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCollectionViewCell.swift; sourceTree = "<group>"; };
+		AB94515B2BF78A5400D65FC2 /* ShareCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareCollectionViewCell.xib; sourceTree = "<group>"; };
 		AB98B9542BF4D06F005665FB /* HisseKarZararTakip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HisseKarZararTakip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB98B9572BF4D06F005665FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB98B9592BF4D06F005665FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,8 +116,19 @@
 			isa = PBXGroup;
 			children = (
 				AB9451532BF75EEA00D65FC2 /* UIViewController+Alert.swift */,
+				AB9451552BF789C100D65FC2 /* UICollectionViewCell+Extensions.swift */,
+				AB9451572BF789F800D65FC2 /* UICollectionView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AB9451592BF78A2C00D65FC2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				AB94515A2BF78A5400D65FC2 /* ShareCollectionViewCell.swift */,
+				AB94515B2BF78A5400D65FC2 /* ShareCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		AB98B94B2BF4D06E005665FB = {
@@ -135,6 +154,7 @@
 		AB98B9562BF4D06F005665FB /* HisseKarZararTakip */ = {
 			isa = PBXGroup;
 			children = (
+				AB9451592BF78A2C00D65FC2 /* Cell */,
 				AB9451522BF75ECF00D65FC2 /* Extensions */,
 				AB9C923F2BF628EF00993A2B /* Model */,
 				AB98B9A52BF4ED6A005665FB /* Repostories */,
@@ -353,6 +373,7 @@
 				AB98B9642BF4D070005665FB /* Assets.xcassets in Resources */,
 				AB98B9672BF4D070005665FB /* Base in Resources */,
 				AB98B9A12BF4D7F5005665FB /* DataShowViewController.xib in Resources */,
+				AB94515D2BF78A5400D65FC2 /* ShareCollectionViewCell.xib in Resources */,
 				AB98B99D2BF4D7DF005665FB /* DataSaveViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,7 +403,10 @@
 				AB9C923E2BF6289700993A2B /* ShareRepository.swift in Sources */,
 				AB98B9582BF4D06F005665FB /* AppDelegate.swift in Sources */,
 				AB98B9A72BF502BD005665FB /* DataSaveViewModel.swift in Sources */,
+				AB9451582BF789F800D65FC2 /* UICollectionView+Extensions.swift in Sources */,
+				AB9451562BF789C100D65FC2 /* UICollectionViewCell+Extensions.swift in Sources */,
 				AB9C92412BF6298A00993A2B /* SavedShareModel.swift in Sources */,
+				AB94515C2BF78A5400D65FC2 /* ShareCollectionViewCell.swift in Sources */,
 				AB98B98F2BF4D1DF005665FB /* ShareDetailList.swift in Sources */,
 				AB98B9622BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld in Sources */,
 				AB98B9A42BF4DA8F005665FB /* TabBarController.swift in Sources */,

@@ -22,65 +22,83 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save the Share" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTh-4N-Tga">
-                    <rect key="frame" x="125.33333333333333" y="109" width="142.66666666666669" height="26.333333333333343"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTq-1r-cmg">
-                    <rect key="frame" x="146.66666666666666" y="421.33333333333331" width="100" height="35"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pry-JM-PCC">
+                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hisse Adı" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eAa-DI-FLs">
+                            <rect key="frame" x="20" y="61.333333333333329" width="353" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Adet" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ONx-K3-btM">
+                            <rect key="frame" x="20" y="115.33333333333334" width="353" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Satın Alma Fiyatı" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T1E-Ms-eoq">
+                            <rect key="frame" x="20" y="169.33333333333334" width="353" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ödenen Komisyon" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qe-7K-Iqk">
+                            <rect key="frame" x="20" y="223.33333333333331" width="353" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTq-1r-cmg">
+                            <rect key="frame" x="146.66666666666666" y="357.33333333333331" width="100" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="EGE-cB-ALc"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="tinted" title="Kaydet">
+                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="saveButtonClicked:" destination="-1" eventType="touchUpInside" id="J4k-Yi-gzC"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hisse Bilgilerini Kaydet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqi-Kx-wh8">
+                            <rect key="frame" x="79.666666666666686" y="4.9999999999999982" width="234" height="26.333333333333329"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="EGE-cB-ALc"/>
+                        <constraint firstItem="eAa-DI-FLs" firstAttribute="leading" secondItem="pry-JM-PCC" secondAttribute="leading" constant="20" id="6be-ZW-o24"/>
+                        <constraint firstItem="zqi-Kx-wh8" firstAttribute="centerX" secondItem="eAa-DI-FLs" secondAttribute="centerX" id="DAx-cM-JUx"/>
+                        <constraint firstItem="T1E-Ms-eoq" firstAttribute="leading" secondItem="pry-JM-PCC" secondAttribute="leading" constant="20" id="HBV-Hi-pc0"/>
+                        <constraint firstItem="ONx-K3-btM" firstAttribute="leading" secondItem="pry-JM-PCC" secondAttribute="leading" constant="20" id="I5y-qg-T2i"/>
+                        <constraint firstItem="ONx-K3-btM" firstAttribute="centerX" secondItem="eAa-DI-FLs" secondAttribute="centerX" id="IEp-TS-p75"/>
+                        <constraint firstItem="eAa-DI-FLs" firstAttribute="top" secondItem="zqi-Kx-wh8" secondAttribute="bottom" constant="30" id="JCR-jk-M9w"/>
+                        <constraint firstAttribute="trailing" secondItem="3qe-7K-Iqk" secondAttribute="trailing" constant="20" id="L4N-x9-9RS"/>
+                        <constraint firstAttribute="trailing" secondItem="eAa-DI-FLs" secondAttribute="trailing" constant="20" id="P8w-dG-UTx"/>
+                        <constraint firstItem="ONx-K3-btM" firstAttribute="top" secondItem="eAa-DI-FLs" secondAttribute="bottom" constant="20" id="PRB-YN-FIA"/>
+                        <constraint firstItem="3qe-7K-Iqk" firstAttribute="leading" secondItem="pry-JM-PCC" secondAttribute="leading" constant="20" id="R48-zu-AiP"/>
+                        <constraint firstItem="hTq-1r-cmg" firstAttribute="top" secondItem="3qe-7K-Iqk" secondAttribute="bottom" constant="100" id="SjL-Kd-DPT"/>
+                        <constraint firstItem="3qe-7K-Iqk" firstAttribute="top" secondItem="T1E-Ms-eoq" secondAttribute="bottom" constant="20" id="VvX-Tb-OI6"/>
+                        <constraint firstAttribute="trailing" secondItem="T1E-Ms-eoq" secondAttribute="trailing" constant="20" id="dNk-Sg-nKj"/>
+                        <constraint firstAttribute="trailing" secondItem="ONx-K3-btM" secondAttribute="trailing" constant="20" id="lMG-0l-dbw"/>
+                        <constraint firstItem="hTq-1r-cmg" firstAttribute="centerX" secondItem="3qe-7K-Iqk" secondAttribute="centerX" id="pxq-uW-EiB"/>
+                        <constraint firstItem="zqi-Kx-wh8" firstAttribute="top" secondItem="pry-JM-PCC" secondAttribute="top" constant="5" id="str-iR-MzH"/>
+                        <constraint firstItem="T1E-Ms-eoq" firstAttribute="top" secondItem="ONx-K3-btM" secondAttribute="bottom" constant="20" id="zgv-13-JXQ"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="tinted" title="Save"/>
-                    <connections>
-                        <action selector="saveButtonClicked:" destination="-1" eventType="touchUpInside" id="J4k-Yi-gzC"/>
-                    </connections>
-                </button>
-                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Share Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eAa-DI-FLs">
-                    <rect key="frame" x="20" y="165.33333333333334" width="353" height="34"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Count" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ONx-K3-btM">
-                    <rect key="frame" x="20" y="219.33333333333334" width="353" height="34"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                </textField>
-                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T1E-Ms-eoq">
-                    <rect key="frame" x="20" y="273.33333333333331" width="353" height="34"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                </textField>
-                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Commission" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qe-7K-Iqk">
-                    <rect key="frame" x="20" y="327.33333333333331" width="353" height="34"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                </textField>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="nTh-4N-Tga" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="5N6-4F-vAK"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3qe-7K-Iqk" secondAttribute="trailing" constant="20" id="BDI-AH-cKf"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eAa-DI-FLs" secondAttribute="trailing" constant="20" id="Bik-81-Ku2"/>
-                <constraint firstItem="nTh-4N-Tga" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="Eun-4K-jFh"/>
-                <constraint firstItem="ONx-K3-btM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="FYl-Tv-8IX"/>
-                <constraint firstItem="3qe-7K-Iqk" firstAttribute="top" secondItem="T1E-Ms-eoq" secondAttribute="bottom" constant="20" id="K6r-Bf-XC3"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ONx-K3-btM" secondAttribute="trailing" constant="20" id="OBK-au-6xE"/>
-                <constraint firstItem="3qe-7K-Iqk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Q0d-F8-K1S"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T1E-Ms-eoq" secondAttribute="trailing" constant="20" id="VBU-L2-NJR"/>
-                <constraint firstItem="hTq-1r-cmg" firstAttribute="top" secondItem="3qe-7K-Iqk" secondAttribute="bottom" constant="60" id="Z8I-jq-wA6"/>
-                <constraint firstItem="T1E-Ms-eoq" firstAttribute="top" secondItem="ONx-K3-btM" secondAttribute="bottom" constant="20" id="bEM-Db-8rx"/>
-                <constraint firstItem="hTq-1r-cmg" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="m2T-Be-jBr"/>
-                <constraint firstItem="eAa-DI-FLs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="pIX-JC-k3a"/>
-                <constraint firstItem="eAa-DI-FLs" firstAttribute="top" secondItem="nTh-4N-Tga" secondAttribute="bottom" constant="30" id="rG5-8a-6hv"/>
-                <constraint firstItem="ONx-K3-btM" firstAttribute="top" secondItem="eAa-DI-FLs" secondAttribute="bottom" constant="20" id="u3s-tY-bgp"/>
-                <constraint firstItem="T1E-Ms-eoq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ynw-qY-d62"/>
+                <constraint firstAttribute="bottom" secondItem="pry-JM-PCC" secondAttribute="bottom" id="5Vn-aJ-L4o"/>
+                <constraint firstItem="pry-JM-PCC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VI6-u1-CyM"/>
+                <constraint firstItem="pry-JM-PCC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cFa-w6-Cws"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pry-JM-PCC" secondAttribute="trailing" id="kED-cL-pC9"/>
+                <constraint firstItem="pry-JM-PCC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lkQ-77-zIh"/>
+                <constraint firstItem="pry-JM-PCC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="tsw-Yl-ssh"/>
             </constraints>
-            <point key="canvasLocation" x="105" y="-11"/>
+            <point key="canvasLocation" x="104.58015267175573" y="-11.267605633802818"/>
         </view>
     </objects>
     <resources>

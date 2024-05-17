@@ -47,6 +47,8 @@ class ShareRepository: ShareRepositoryProtocol {
     }
     
     func fetchShares(completion: @escaping ([SavedShareModel]?) -> ()) {
+        shares.removeAll(keepingCapacity: false)
+        
         let viewContext = appDelegate?.persistentContainer.viewContext
         guard let viewContext else { return }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedShare")

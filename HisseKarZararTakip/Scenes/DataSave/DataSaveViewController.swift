@@ -23,6 +23,8 @@ class DataSaveViewController: UIViewController {
         viewModel.delegate = self
         TextFieldArrangements()
         viewModel.getShareNames()
+        
+ 
     }
 
 }
@@ -62,12 +64,24 @@ extension DataSaveViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return viewModel.shareNames[row]
+        if row == 0 {
+            return ""
+        } else {
+            return viewModel.shareNames[row - 1] // Share isimlerini bu şekilde ayarla
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        nameTextField.text = viewModel.shareNames[row]
+        if row == 0 {
+            nameTextField.text = ""
+        } else {
+            return nameTextField.text = viewModel.shareNames[row-1]
+        }
+  
     }
+    
+
+    
 
 }
 
@@ -97,6 +111,8 @@ extension DataSaveViewController {
         
         shareNamePickerView.delegate = self
         shareNamePickerView.dataSource = self
+     
+        
         nameTextField.inputView = shareNamePickerView
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -127,8 +143,9 @@ extension DataSaveViewController: DataSaveViewModelDelegate {
                 let fromView = tabBarController.selectedViewController?.view
                 let toView = viewControllers[1].view
                 
-                guard let fromView = fromView, let toView = toView else {return}
-                UIView.transition(from: fromView, to: toView, duration: 0.5, options: [.transitionFlipFromLeft], completion: { _ in
+                guard let fromView,
+                      let toView else { return }
+                UIView.transition(from: fromView, to: toView, duration: 0.5, options: [.transitionCrossDissolve], completion: { _ in
                     tabBarController.selectedIndex = 1
                 })
                 
