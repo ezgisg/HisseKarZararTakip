@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB9451542BF75EEA00D65FC2 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9451532BF75EEA00D65FC2 /* UIViewController+Alert.swift */; };
 		AB98B9582BF4D06F005665FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9572BF4D06F005665FB /* AppDelegate.swift */; };
 		AB98B95A2BF4D06F005665FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9592BF4D06F005665FB /* SceneDelegate.swift */; };
 		AB98B9622BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB98B9602BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB9451532BF75EEA00D65FC2 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		AB98B9542BF4D06F005665FB /* HisseKarZararTakip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HisseKarZararTakip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB98B9572BF4D06F005665FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB98B9592BF4D06F005665FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB9451522BF75ECF00D65FC2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AB9451532BF75EEA00D65FC2 /* UIViewController+Alert.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		AB98B94B2BF4D06E005665FB = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +135,7 @@
 		AB98B9562BF4D06F005665FB /* HisseKarZararTakip */ = {
 			isa = PBXGroup;
 			children = (
+				AB9451522BF75ECF00D65FC2 /* Extensions */,
 				AB9C923F2BF628EF00993A2B /* Model */,
 				AB98B9A52BF4ED6A005665FB /* Repostories */,
 				AB98B9972BF4D79A005665FB /* Scenes */,
@@ -380,6 +391,7 @@
 				AB98B9912BF4D2DF005665FB /* ShareService.swift in Sources */,
 				AB98B95A2BF4D06F005665FB /* SceneDelegate.swift in Sources */,
 				AB98B99C2BF4D7DF005665FB /* DataSaveViewController.swift in Sources */,
+				AB9451542BF75EEA00D65FC2 /* UIViewController+Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

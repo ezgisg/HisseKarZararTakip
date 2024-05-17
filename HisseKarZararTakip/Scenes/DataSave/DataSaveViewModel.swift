@@ -11,27 +11,58 @@ import Foundation
 protocol DataSaveViewModelProtocol {
     func controlDecimalNumberText(currentText: String? , replacementString: String, range: NSRange) -> (String?)
     func controlIntegerNumberText(currentText: String? , replacementString: String, range: NSRange) -> Bool
-    
     func saveNewShare(share: inout SavedShareModel)
+    func getShareNames()
    
 
 }
 
 protocol DataSaveViewModelDelegate {
-    
+    func sendShareName()
+    func saveCompleted(title: String, message: String, isSuccess: Bool)
 }
 
 
 class DataSaveViewModel: DataSaveViewModelProtocol {
 
-
+    var service: ShareServiceProtocol? = ShareService()
     var delegate: DataSaveViewModelDelegate?
+    var shareNames = [String]()
+    var shareNamesCount = Int()
     private var shareRepository = ShareRepository()
     
     func saveNewShare(share: inout SavedShareModel) {
         share.total = (share.count ?? 0) * (share.price ?? 0) + (share.commission ?? 0)
-        shareRepository.saveShare(model: share)
+        let isRecorded = shareRepository.saveShare(model: share)
+        if isRecorded {
+            self.delegate?.saveCompleted(title: "Başarılı", message: "Kayıt başarıyla gerçekleşti!", isSuccess: true)
+        } else {
+            self.delegate?.saveCompleted(title: "Başarısız", message: "Kayıt tamamlanamadı!", isSuccess: false)
+        }
     }
+    
+    func getShareNames() {
+        let urlString = "https://bigpara.hurriyet.com.tr/api/v1/hisse/list"
+        service?.fetchServiceData(urlString: urlString, completion: { (response: Result<ShareList, Error>) in
+            switch response {
+            case .success(let data):
+                let shareNames = data.data
+                guard let shareNames else {return}
+                for sharename in shareNames {
+                    guard let name = sharename.ad else {return}
+                    self.shareNames.append(name)
+                }
+                self.shareNamesCount = shareNames.count
+                self.delegate?.sendShareName()
+                
+            case .failure(_):
+                //TO DO: Alert
+                print("***** Error happend when fetching name service data *****")
+            }
+        })
+    }
+    
+    func getShareDetailInfos() {}
 
 }
 

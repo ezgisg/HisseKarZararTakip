@@ -8,25 +8,29 @@
 import Foundation
 
 protocol DataShowViewModelProtocol {
-    func fetchShares() -> [SavedShareModel]?
+    func fetchShares()
     var recordedShares: [SavedShareModel]? {get}
+  
 }
 
 protocol DataShowViewModelDelegate {
-    
+    func getShares()
 }
 
 class DataShowViewModel: DataShowViewModelProtocol {
 
+  
     var recordedShares: [SavedShareModel]?
-
     var delegate: DataShowViewModelDelegate?
-    
     private var shareRepository = ShareRepository()
 
-    func fetchShares() -> [SavedShareModel]? {
-     recordedShares = shareRepository.fetchShares()
-     return recordedShares
+    func fetchShares() {
+        shareRepository.fetchShares { shares in
+            self.recordedShares = shares
+            self.delegate?.getShares()
+        }
     }
+
+
     
 }

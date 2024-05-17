@@ -9,11 +9,11 @@ import Foundation
 import Alamofire
 
 protocol ShareServiceProtocol {
-    func fetchData<T:Decodable>(urlString: String, completion: @escaping (Result<T,Error>) -> Void)
+    func fetchServiceData<T:Decodable>(urlString: String, completion: @escaping (Result<T,Error>) -> Void)
 }
 
 class ShareService: ShareServiceProtocol {
-    func fetchData<T>(urlString: String, completion: @escaping (Result<T, any Error>) -> Void) where T : Decodable {
+    func fetchServiceData<T>(urlString: String, completion: @escaping (Result<T, any Error>) -> Void) where T : Decodable {
         AF.request(urlString).responseData { response in
             switch response.result {
             case .success(let data):

@@ -15,20 +15,16 @@ class DataShowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-    
-    }
-    
-    override func viewDidLayoutSubviews() {
         viewModel.fetchShares()
       
-        print(self.viewModel.recordedShares,"hey")
-        
-
     }
     
-
 }
 
 extension DataShowViewController: DataShowViewModelDelegate {
+    func getShares() {
+        
+    }
     
+
 }
