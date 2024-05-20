@@ -23,11 +23,20 @@ class DataSaveViewController: UIViewController {
         viewModel.delegate = self
         TextFieldArrangements()
         viewModel.getShareNames()
-        navigationItem.title = "Hisse Bilgilerimi Kaydet"
+        hideKeyboardWhenTappedAround()
+        setupNavigationBar()
 
- 
     }
-
+    
+    func setupNavigationBar() {
+        navigationItem.title = "Hisse Bilgilerimi Kaydet"
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+        ]
+        navigationController?.navigationBar.standardAppearance = appearance
+    }
 }
 
 //Textfield controls
@@ -68,7 +77,7 @@ extension DataSaveViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         if row == 0 {
             return ""
         } else {
-            return viewModel.shareNames[row - 1] // Share isimlerini bu şekilde ayarla
+            return viewModel.shareNames[row - 1] 
         }
     }
     
@@ -86,8 +95,19 @@ extension DataSaveViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
 }
 
+
 //Actions
 extension DataSaveViewController {
+    
+    func hideKeyboardWhenTappedAround() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     @IBAction func saveButtonClicked(_ sender: Any) {
         
         guard let name = nameTextField.text, !name.isEmpty,
@@ -154,12 +174,8 @@ extension DataSaveViewController: DataSaveViewModelDelegate {
            
                 })
                 
-                self.nameTextField.text = ""
-                self.countTextField.text = ""
-                self.commissionTextField.text = ""
-                self.priceTextField.text = ""
-          
-            
+                self.clearFields()
+
             }
                 
                 
@@ -169,6 +185,15 @@ extension DataSaveViewController: DataSaveViewModelDelegate {
     func sendShareName() {
         shareNamePickerView.reloadAllComponents()
     }
+    
+    func clearFields() {
+        self.nameTextField.text = ""
+        self.countTextField.text = ""
+        self.commissionTextField.text = ""
+        self.priceTextField.text = ""
+        self.shareNamePickerView.selectRow(0, inComponent: 0, animated: false)
+    }
+    
     
 }
 

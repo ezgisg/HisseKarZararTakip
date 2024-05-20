@@ -12,4 +12,8 @@ extension Double {
     func formatString() -> String {
          return String(format: "%.2f", self)
      }
+    
+    func formatStringLikeInteger() -> String {
+         return String(Int(self))
+     }
 }

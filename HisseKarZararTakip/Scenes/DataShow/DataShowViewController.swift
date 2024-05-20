@@ -9,6 +9,8 @@ import UIKit
 
 class DataShowViewController: UIViewController {
     
+    var cellHeights: [IndexPath: CGFloat] = [:]
+    
     var collectionViewWidth = CGFloat()
     let viewModel = DataShowViewModel()
     @IBOutlet weak var collectionView: UICollectionView!
@@ -18,8 +20,11 @@ class DataShowViewController: UIViewController {
         viewModel.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        collectionView.collectionViewLayout = flowLayout
         collectionView.register(cellType: ShareCollectionViewCell.self)
-        navigationItem.title = "Hisselerim"
+        setupNavigationBar()
 
 
     }
@@ -27,17 +32,29 @@ class DataShowViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionViewWidth = collectionView.frame.width
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         viewModel.calculateTotal()
+    
     }
     
+    func setupNavigationBar() {
+        navigationItem.title = "Hisselerim"
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+        ]
+        navigationController?.navigationBar.standardAppearance = appearance
+    }
 }
 
 extension DataShowViewController: DataShowViewModelDelegate {
     func getShares() {
         collectionView.reloadData()
+       
     }
 
 }
@@ -56,9 +73,6 @@ extension DataShowViewController:  UICollectionViewDelegate, UICollectionViewDat
         cell.configure(data: viewModel.sumRecordedShares?[indexPath.row])
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionViewWidth, height: 200)
-    }
-    
+ 
 
 }
