@@ -23,7 +23,8 @@ class DataSaveViewController: UIViewController {
         viewModel.delegate = self
         TextFieldArrangements()
         viewModel.getShareNames()
-        
+        navigationItem.title = "Hisse Bilgilerimi Kaydet"
+
  
     }
 
@@ -131,6 +132,9 @@ extension DataSaveViewController {
 
 extension DataSaveViewController: DataSaveViewModelDelegate {
     func saveCompleted(title: String, message: String, isSuccess: Bool) {
+        
+     
+        
         showAlert(title: title, message: message) {
             
             //if core data save operation completed with success then show list screen with animation
@@ -147,8 +151,15 @@ extension DataSaveViewController: DataSaveViewModelDelegate {
                       let toView else { return }
                 UIView.transition(from: fromView, to: toView, duration: 0.5, options: [.transitionCrossDissolve], completion: { _ in
                     tabBarController.selectedIndex = 1
+           
                 })
                 
+                self.nameTextField.text = ""
+                self.countTextField.text = ""
+                self.commissionTextField.text = ""
+                self.priceTextField.text = ""
+          
+            
             }
                 
                 

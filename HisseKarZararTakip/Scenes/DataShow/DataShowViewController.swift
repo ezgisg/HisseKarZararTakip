@@ -19,6 +19,9 @@ class DataShowViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cellType: ShareCollectionViewCell.self)
+        navigationItem.title = "Hisselerim"
+
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -27,8 +30,7 @@ class DataShowViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.fetchShares()
-        print(viewModel.allRecordedShares?.count ?? 0)
+        viewModel.calculateTotal()
     }
     
 }
@@ -45,7 +47,7 @@ extension DataShowViewController:  UICollectionViewDelegate, UICollectionViewDat
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.recordedSharesNames.count
+        return viewModel.sumRecordedShares?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -55,6 +57,8 @@ extension DataShowViewController:  UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionViewWidth, height: 100)
+        return CGSize(width: collectionViewWidth, height: 200)
     }
+    
+
 }

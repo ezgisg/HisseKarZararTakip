@@ -26,6 +26,7 @@ class TabBarController: UITabBarController {
         self.viewControllers?[1].title = "List"
         self.viewControllers?[0].tabBarItem.image = UIImage(systemName: "arrowshape.down")
         self.viewControllers?[1].tabBarItem.image = UIImage(systemName: "list.clipboard")
+        
     }
 }
 

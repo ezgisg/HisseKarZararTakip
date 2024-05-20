@@ -49,7 +49,7 @@ class DataSaveViewModel: DataSaveViewModelProtocol {
                 let shareNames = data.data
                 guard let shareNames else {return}
                 for sharename in shareNames {
-                    guard let name = sharename.ad else {return}
+                    guard let name = sharename.kod else {return}
                     self.shareNames.append(name)
                 }
                 self.shareNamesCount = shareNames.count
@@ -57,7 +57,7 @@ class DataSaveViewModel: DataSaveViewModelProtocol {
                 
             case .failure(_):
                 //TO DO: Alert
-                print("***** Error happend when fetching name service data *****")
+                print("***** Error happened when fetching name service data *****")
             }
         })
     }

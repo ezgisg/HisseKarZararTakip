@@ -22,14 +22,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcm-JM-m9v">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hisselerim" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dX9-Rf-7iC">
-                            <rect key="frame" x="20" y="4.9999999999999982" width="353" height="26.333333333333329"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eN0-8N-gmt">
-                            <rect key="frame" x="0.0" y="61.333333333333314" width="393" height="697.66666666666674"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NxS-sn-JDy">
                                 <size key="itemSize" width="128" height="128"/>
@@ -41,14 +35,10 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="eN0-8N-gmt" firstAttribute="top" secondItem="dX9-Rf-7iC" secondAttribute="bottom" constant="30" id="0Dz-1M-vhj"/>
-                        <constraint firstAttribute="trailing" secondItem="dX9-Rf-7iC" secondAttribute="trailing" constant="20" id="NjZ-EF-Did"/>
-                        <constraint firstItem="dX9-Rf-7iC" firstAttribute="leading" secondItem="pcm-JM-m9v" secondAttribute="leading" constant="20" id="c7a-9k-CU8"/>
+                        <constraint firstItem="eN0-8N-gmt" firstAttribute="top" secondItem="pcm-JM-m9v" secondAttribute="top" id="WY2-Vk-7fv"/>
                         <constraint firstAttribute="trailing" secondItem="eN0-8N-gmt" secondAttribute="trailing" id="cIF-ai-nDL"/>
-                        <constraint firstItem="dX9-Rf-7iC" firstAttribute="centerX" secondItem="eN0-8N-gmt" secondAttribute="centerX" id="gJd-lz-Urg"/>
                         <constraint firstItem="eN0-8N-gmt" firstAttribute="leading" secondItem="pcm-JM-m9v" secondAttribute="leading" id="iZH-cK-g42"/>
                         <constraint firstAttribute="bottom" secondItem="eN0-8N-gmt" secondAttribute="bottom" id="lef-Kb-I8D"/>
-                        <constraint firstItem="dX9-Rf-7iC" firstAttribute="top" secondItem="pcm-JM-m9v" secondAttribute="top" constant="5" id="n6X-AJ-bgR"/>
                     </constraints>
                 </view>
             </subviews>
