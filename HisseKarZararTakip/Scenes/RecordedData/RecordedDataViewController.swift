@@ -14,22 +14,20 @@ class RecordedDataViewController: UIViewController {
     
  
     let viewModel = RecordedDataViewModel()
-    var selectedCells = Set<IndexPath>()
+    var selectedCells = Set<IndexPath>() {
+        didSet {
+            selectedCount = selectedCells.count
+        }
+    }
     var deleteButton = UIBarButtonItem()
     var editButton = UIBarButtonItem()
-    var areEditEnabled: Bool = false {
+    var selectedCount: Int = 0 {
         didSet {
-            updateButtonStates()
+            controlSelectedCountandChangeButtonStatus()
         }
     }
-    var areDeleteEnabled: Bool = false {
-        didSet {
-            updateButtonStates()
-        }
-    }
-
-    // Fonksiyon: Butonların etkinliğini günceller
- 
+    var areEditEnabled: Bool = false
+    var areDeleteEnabled: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +41,6 @@ class RecordedDataViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         viewModel.fetchShares()
-        controlSelectedCountandChangeButtonStatus()
-
     }
 
 }
@@ -74,12 +70,9 @@ extension RecordedDataViewController: UICollectionViewDelegate {
             if cell.contentView.backgroundColor == .lightGray {
                 cell.contentView.backgroundColor = .white
                 selectedCells.remove(indexPath)
-                controlSelectedCountandChangeButtonStatus()
-               
             } else {
                 cell.contentView.backgroundColor = .lightGray
                 selectedCells.insert(indexPath)
-                controlSelectedCountandChangeButtonStatus()
             }
         }
     }
@@ -103,7 +96,7 @@ extension RecordedDataViewController: RecordedDataViewModelDelegate {
 //        collectionView.reloadSections([0])
         collectionView.reloadData()
         selectedCells.removeAll(keepingCapacity: false)
-        controlSelectedCountandChangeButtonStatus() 
+    
     }
     
 }
