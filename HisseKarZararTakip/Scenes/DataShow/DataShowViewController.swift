@@ -9,38 +9,50 @@ import UIKit
 
 class DataShowViewController: UIViewController {
     
-    var cellHeights: [IndexPath: CGFloat] = [:]
-    
+    // MARK: - Variables
     var collectionViewWidth = CGFloat()
     let viewModel = DataShowViewModel()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        collectionView.collectionViewLayout = flowLayout
-        collectionView.register(cellType: ShareCollectionViewCell.self)
+        collectionvViewConfiguration()
         setupNavigationBar()
-
-
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionViewWidth = collectionView.frame.width
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         viewModel.calculateTotal()
-    
     }
     
-    func setupNavigationBar() {
+
+}
+
+// MARK: - DataShowViewModelDelegate
+extension DataShowViewController: DataShowViewModelDelegate {
+    func getShares() {
+        collectionView.reloadData()
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension DataShowViewController:  UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.sumRecordedShares?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeCell(cellType: ShareCollectionViewCell.self, indexPath: indexPath)
+        cell.configure(data: viewModel.sumRecordedShares?[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: - Actions
+private extension DataShowViewController {
+    
+   final func setupNavigationBar() {
         navigationItem.title = "Hisselerim"
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
@@ -48,31 +60,21 @@ class DataShowViewController: UIViewController {
             .font: UIFont.systemFont(ofSize: 24, weight: .bold)
         ]
         navigationController?.navigationBar.standardAppearance = appearance
-    }
-}
-
-extension DataShowViewController: DataShowViewModelDelegate {
-    func getShares() {
-        collectionView.reloadData()
-       
-    }
-
-}
-
-
-extension DataShowViewController:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.sumRecordedShares?.count ?? 0
+        let rightBarButton = UIBarButtonItem(title: "Detail", style: .plain, target: self, action: #selector(goToNextScreen))
+            navigationItem.rightBarButtonItem = rightBarButton
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        let cell = collectionView.dequeCell(cellType: ShareCollectionViewCell.self, indexPath: indexPath)
-        cell.configure(data: viewModel.sumRecordedShares?[indexPath.row])
-        return cell
+    @objc func goToNextScreen() {
+         let secondViewController = RecordedDataViewController()
+         navigationController?.pushViewController(secondViewController, animated: true)
+     }
+    
+    final func collectionvViewConfiguration() {
+        collectionView.dataSource = self
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        collectionView.collectionViewLayout = flowLayout
+        collectionView.register(cellType: ShareCollectionViewCell.self)
     }
- 
-
+    
 }

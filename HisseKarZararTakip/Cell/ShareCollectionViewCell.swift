@@ -41,6 +41,7 @@ class ShareCollectionViewCell: UICollectionViewCell {
          let gainWCommission = gain - (data.commission ?? 0)
         profit.attributedText = attributedText(withTitle: "Kar/zarar: ", value: gainWCommission.formatString(), fontSize: 24)
          profit.textColor = gainWCommission >= 0 ? .systemGreen : .red
+        
      
      }
 

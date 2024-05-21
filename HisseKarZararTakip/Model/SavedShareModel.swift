@@ -13,4 +13,5 @@ struct SavedShareModel: Decodable {
     var price: Double?
     var commission: Double?
     var total: Double?
+    var uuid: UUID?
 }

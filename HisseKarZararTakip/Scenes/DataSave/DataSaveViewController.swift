@@ -8,27 +8,34 @@
 import UIKit
 
 class DataSaveViewController: UIViewController {
-
-    let viewModel = DataSaveViewModel()
   
+    // MARK: - UI Components
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var countTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var commissionTextField: UITextField!
+    
     private let shareNamePickerView = UIPickerView()
     
+    // MARK: - MVVM Components
+    let viewModel = DataSaveViewModel()
+
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
         viewModel.delegate = self
-        TextFieldArrangements()
+        arrangeTextFields()
         viewModel.getShareNames()
         hideKeyboardWhenTappedAround()
         setupNavigationBar()
 
     }
-    
-    func setupNavigationBar() {
+}
+
+// MARK: - Setup / Configuration
+private extension DataSaveViewController {
+    final func setupNavigationBar() {
         navigationItem.title = "Hisse Bilgilerimi Kaydet"
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
@@ -39,36 +46,44 @@ class DataSaveViewController: UIViewController {
     }
 }
 
-//Textfield controls
+// MARK: - UITextFieldDelegate
 extension DataSaveViewController: UITextFieldDelegate {
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
         guard let currentText = textField.text else {return true}
         
         switch textField {
         case priceTextField,
-        commissionTextField:
+             commissionTextField:
             let newText = viewModel.controlDecimalNumberText(currentText: currentText, replacementString: string, range: range)
             if let newText {
                 textField.text = newText
             }
             return false
         case countTextField:
-            let bool = viewModel.controlIntegerNumberText(currentText: currentText, replacementString: string, range: range)
-            return bool
+            return viewModel.controlIntegerNumberText(
+                currentText: currentText,
+                replacementString: string,
+                range: range
+            )
         default:
             return false
         }
     }
 }
 
-//Picker things
-extension DataSaveViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+// MARK: - UIPickerViewDelegate
+extension DataSaveViewController: UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+}
+
+// MARK: - UIPickerViewDataSource
+extension DataSaveViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return viewModel.shareNamesCount
     }
@@ -87,19 +102,12 @@ extension DataSaveViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             return nameTextField.text = viewModel.shareNames[row-1]
         }
-  
     }
-    
-
-    
-
 }
 
-
-//Actions
-extension DataSaveViewController {
-    
-    func hideKeyboardWhenTappedAround() {
+// MARK: - Actions
+private extension DataSaveViewController {
+    final func hideKeyboardWhenTappedAround() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
@@ -117,14 +125,14 @@ extension DataSaveViewController {
             showAlert(title: "Eksik Bilgi", message: "Kayıt yapılamadı. Eksik bilgileri tamamlayınız.")
             return
         }
-        
-        var newShare = SavedShareModel(name: name, count: count, price: price, commission: commission, total: nil)
+        let uuid = UUID()
+        var newShare = SavedShareModel(name: name, count: count, price: price, commission: commission, total: nil, uuid: uuid)
         
         viewModel.saveNewShare(share: &newShare)
         
     }
     
-    private func TextFieldArrangements() {
+    final func arrangeTextFields() {
         priceTextField.delegate = self
         commissionTextField.delegate = self
         countTextField.delegate = self
@@ -132,13 +140,20 @@ extension DataSaveViewController {
         
         shareNamePickerView.delegate = self
         shareNamePickerView.dataSource = self
-     
         
         nameTextField.inputView = shareNamePickerView
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(doneTapped)
+        )
+        let space = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
         toolbar.setItems([space, doneButton], animated: false)
         nameTextField.inputAccessoryView = toolbar
         
@@ -152,17 +167,20 @@ extension DataSaveViewController {
 
 extension DataSaveViewController: DataSaveViewModelDelegate {
     func saveCompleted(title: String, message: String, isSuccess: Bool) {
-        
-     
-        
         showAlert(title: title, message: message) {
-            
-            //if core data save operation completed with success then show list screen with animation
+
             if isSuccess {
+                // if core data save operation completed with success then show list screen with animation
+         
+                /*
+                 //kayıt ettikten sonra kayıtlarım ekranına gitmek istersek
+                let secondViewController = RecordedDataViewController()
+                self.navigationController?.pushViewController(secondViewController, animated: true)
+                  */
                 
                 guard let tabBarController = self.tabBarController,
                       let viewControllers = tabBarController.viewControllers,
-                      viewControllers.count > 1 else {return}
+                      viewControllers.count > 1 else { return }
                 
                 let fromView = tabBarController.selectedViewController?.view
                 let toView = viewControllers[1].view
@@ -171,14 +189,10 @@ extension DataSaveViewController: DataSaveViewModelDelegate {
                       let toView else { return }
                 UIView.transition(from: fromView, to: toView, duration: 0.5, options: [.transitionCrossDissolve], completion: { _ in
                     tabBarController.selectedIndex = 1
-           
                 })
                 
                 self.clearFields()
-
             }
-                
-                
         }
     }
     
@@ -187,14 +201,12 @@ extension DataSaveViewController: DataSaveViewModelDelegate {
     }
     
     func clearFields() {
-        self.nameTextField.text = ""
-        self.countTextField.text = ""
-        self.commissionTextField.text = ""
-        self.priceTextField.text = ""
-        self.shareNamePickerView.selectRow(0, inComponent: 0, animated: false)
+        nameTextField.text = ""
+        countTextField.text = ""
+        commissionTextField.text = ""
+        priceTextField.text = ""
+        shareNamePickerView.selectRow(0, inComponent: 0, animated: false)
     }
-    
-    
 }
 
 

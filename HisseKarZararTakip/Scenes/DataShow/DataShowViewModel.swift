@@ -23,10 +23,6 @@ protocol DataShowViewModelDelegate {
 }
 
 class DataShowViewModel: DataShowViewModelProtocol {
-
-
-    
-  
     var allRecordedShares: [SavedShareModel]? = [SavedShareModel]()
     var recordedSharesNames: Set<String> =  Set<String>()
     var sumRecordedShares: [TotalShareModel]? = [TotalShareModel]()
@@ -35,8 +31,9 @@ class DataShowViewModel: DataShowViewModelProtocol {
     private var shareRepository = ShareRepository()
     
     func fetchShares(completion: @escaping ([String]) -> ()) {
-    
-        shareRepository.fetchShares { [self] shares in
+        recordedSharesNames.removeAll(keepingCapacity: false)
+        shareRepository.fetchShares { [weak self] shares in
+            guard let self = self else {return}
             allRecordedShares = shares
             guard let allRecordedShares = allRecordedShares else {return}
             for record in allRecordedShares {
@@ -51,7 +48,9 @@ class DataShowViewModel: DataShowViewModelProtocol {
     
     func calculateTotal() {
         sumRecordedShares?.removeAll(keepingCapacity: false)
+    
         fetchShares { recordedSharesNamesArray in
+
             guard let allRecordedShares = self.allRecordedShares else {return}
             
             let group = DispatchGroup()
@@ -68,8 +67,7 @@ class DataShowViewModel: DataShowViewModelProtocol {
                     }
                 }
                 sumRecordedShare.avgPrice = (sumRecordedShare.total ?? 0) /  (sumRecordedShare.count ?? 0)
-           
-                
+          
                 group.enter()
                 self.getShareCurrentPrice(recordedShare: recordedName) { currentPrice in
                     sumRecordedShare.currentPrice = currentPrice
@@ -79,7 +77,6 @@ class DataShowViewModel: DataShowViewModelProtocol {
     
             }
    
-
             group.notify(queue: .main) {
                 self.sumRecordedShares?.sort {
                          guard let name1 = $0.name, let name2 = $1.name else {
@@ -89,9 +86,6 @@ class DataShowViewModel: DataShowViewModelProtocol {
                      }
                  self.delegate?.getShares()
              }
-              
-            
-      
         }
         
     }

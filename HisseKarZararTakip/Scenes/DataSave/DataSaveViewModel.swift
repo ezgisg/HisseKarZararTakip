@@ -8,23 +8,22 @@
 import Foundation
 
 
+// MARK: - DataSaveViewModelProtocol
 protocol DataSaveViewModelProtocol {
     func controlDecimalNumberText(currentText: String? , replacementString: String, range: NSRange) -> (String?)
     func controlIntegerNumberText(currentText: String? , replacementString: String, range: NSRange) -> Bool
     func saveNewShare(share: inout SavedShareModel)
     func getShareNames()
-   
-
 }
 
+// MARK: - DataSaveViewModelDelegate
 protocol DataSaveViewModelDelegate {
     func sendShareName()
     func saveCompleted(title: String, message: String, isSuccess: Bool)
 }
 
-
+// MARK: - DataSaveViewModel
 class DataSaveViewModel: DataSaveViewModelProtocol {
-
     var service: ShareServiceProtocol? = ShareService()
     var delegate: DataSaveViewModelDelegate?
     var shareNames = [String]()

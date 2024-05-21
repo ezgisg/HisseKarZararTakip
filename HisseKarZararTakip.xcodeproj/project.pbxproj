@@ -36,6 +36,11 @@
 		AB9C923E2BF6289700993A2B /* ShareRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C923D2BF6289700993A2B /* ShareRepository.swift */; };
 		AB9C92412BF6298A00993A2B /* SavedShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C92402BF6298A00993A2B /* SavedShareModel.swift */; };
 		AB9C92432BF637EE00993A2B /* DataShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C92422BF637EE00993A2B /* DataShowViewModel.swift */; };
+		AB9E6C212BFC81C2001B8579 /* RecordedDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9E6C202BFC81C2001B8579 /* RecordedDataViewController.xib */; };
+		AB9E6C222BFC81C2001B8579 /* RecordedDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E6C1F2BFC81C2001B8579 /* RecordedDataViewController.swift */; };
+		AB9E6C252BFC8A6C001B8579 /* RecordedDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9E6C242BFC8A6C001B8579 /* RecordedDataCollectionViewCell.xib */; };
+		AB9E6C262BFC8A6C001B8579 /* RecordedDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E6C232BFC8A6C001B8579 /* RecordedDataCollectionViewCell.swift */; };
+		AB9E6C282BFC9B65001B8579 /* RecordedDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E6C272BFC9B65001B8579 /* RecordedDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +92,11 @@
 		AB9C923D2BF6289700993A2B /* ShareRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRepository.swift; sourceTree = "<group>"; };
 		AB9C92402BF6298A00993A2B /* SavedShareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedShareModel.swift; sourceTree = "<group>"; };
 		AB9C92422BF637EE00993A2B /* DataShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataShowViewModel.swift; sourceTree = "<group>"; };
+		AB9E6C1F2BFC81C2001B8579 /* RecordedDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedDataViewController.swift; sourceTree = "<group>"; };
+		AB9E6C202BFC81C2001B8579 /* RecordedDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordedDataViewController.xib; sourceTree = "<group>"; };
+		AB9E6C232BFC8A6C001B8579 /* RecordedDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedDataCollectionViewCell.swift; sourceTree = "<group>"; };
+		AB9E6C242BFC8A6C001B8579 /* RecordedDataCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordedDataCollectionViewCell.xib; sourceTree = "<group>"; };
+		AB9E6C272BFC9B65001B8579 /* RecordedDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedDataViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +142,8 @@
 			children = (
 				AB94515A2BF78A5400D65FC2 /* ShareCollectionViewCell.swift */,
 				AB94515B2BF78A5400D65FC2 /* ShareCollectionViewCell.xib */,
+				AB9E6C232BFC8A6C001B8579 /* RecordedDataCollectionViewCell.swift */,
+				AB9E6C242BFC8A6C001B8579 /* RecordedDataCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -213,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				AB98B9A22BF4DA55005665FB /* TabBar */,
+				AB9E6C1E2BFC8180001B8579 /* RecordedData */,
 				AB98B9992BF4D7BC005665FB /* DataShow */,
 				AB98B9982BF4D7A3005665FB /* DataSave */,
 			);
@@ -263,6 +276,16 @@
 				AB9A6BB92BFB3CAE00E69E6B /* TotalShareModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		AB9E6C1E2BFC8180001B8579 /* RecordedData */ = {
+			isa = PBXGroup;
+			children = (
+				AB9E6C1F2BFC81C2001B8579 /* RecordedDataViewController.swift */,
+				AB9E6C202BFC81C2001B8579 /* RecordedDataViewController.xib */,
+				AB9E6C272BFC9B65001B8579 /* RecordedDataViewModel.swift */,
+			);
+			path = RecordedData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,7 +400,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB98B9642BF4D070005665FB /* Assets.xcassets in Resources */,
+				AB9E6C252BFC8A6C001B8579 /* RecordedDataCollectionViewCell.xib in Resources */,
 				AB98B9672BF4D070005665FB /* Base in Resources */,
+				AB9E6C212BFC81C2001B8579 /* RecordedDataViewController.xib in Resources */,
 				AB98B9A12BF4D7F5005665FB /* DataShowViewController.xib in Resources */,
 				AB94515D2BF78A5400D65FC2 /* ShareCollectionViewCell.xib in Resources */,
 				AB98B99D2BF4D7DF005665FB /* DataSaveViewController.xib in Resources */,
@@ -407,6 +432,7 @@
 			files = (
 				AB9A6BBD2BFB704000E69E6B /* Number+Extensions.swift in Sources */,
 				AB9A6BBA2BFB3CAE00E69E6B /* TotalShareModel.swift in Sources */,
+				AB9E6C282BFC9B65001B8579 /* RecordedDataViewModel.swift in Sources */,
 				AB9C92432BF637EE00993A2B /* DataShowViewModel.swift in Sources */,
 				AB9C923E2BF6289700993A2B /* ShareRepository.swift in Sources */,
 				AB98B9582BF4D06F005665FB /* AppDelegate.swift in Sources */,
@@ -421,6 +447,8 @@
 				AB98B9A02BF4D7F5005665FB /* DataShowViewController.swift in Sources */,
 				AB98B98C2BF4D0FC005665FB /* ShareList.swift in Sources */,
 				AB98B9912BF4D2DF005665FB /* ShareService.swift in Sources */,
+				AB9E6C262BFC8A6C001B8579 /* RecordedDataCollectionViewCell.swift in Sources */,
+				AB9E6C222BFC81C2001B8579 /* RecordedDataViewController.swift in Sources */,
 				AB98B95A2BF4D06F005665FB /* SceneDelegate.swift in Sources */,
 				AB98B99C2BF4D7DF005665FB /* DataSaveViewController.swift in Sources */,
 				AB9451542BF75EEA00D65FC2 /* UIViewController+Alert.swift in Sources */,
