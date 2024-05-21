@@ -30,6 +30,7 @@ class ShareRepository: ShareRepositoryProtocol {
                     for result in results {
                         viewContext.delete(result)
                     }
+                    
 //                    completion()
                 }
             

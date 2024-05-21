@@ -15,18 +15,35 @@ class RecordedDataViewController: UIViewController {
  
     let viewModel = RecordedDataViewModel()
     var selectedCells = Set<IndexPath>()
+    var deleteButton = UIBarButtonItem()
+    var editButton = UIBarButtonItem()
+    var areEditEnabled: Bool = false {
+        didSet {
+            updateButtonStates()
+        }
+    }
+    var areDeleteEnabled: Bool = false {
+        didSet {
+            updateButtonStates()
+        }
+    }
+
+    // Fonksiyon: Butonların etkinliğini günceller
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
         setupNavigationBar()
         collectionViewConfiguration()
+       
    
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         viewModel.fetchShares()
+        controlSelectedCountandChangeButtonStatus()
 
     }
 
@@ -57,10 +74,12 @@ extension RecordedDataViewController: UICollectionViewDelegate {
             if cell.contentView.backgroundColor == .lightGray {
                 cell.contentView.backgroundColor = .white
                 selectedCells.remove(indexPath)
+                controlSelectedCountandChangeButtonStatus()
                
             } else {
                 cell.contentView.backgroundColor = .lightGray
                 selectedCells.insert(indexPath)
+                controlSelectedCountandChangeButtonStatus()
             }
         }
     }
@@ -84,11 +103,12 @@ extension RecordedDataViewController: RecordedDataViewModelDelegate {
 //        collectionView.reloadSections([0])
         collectionView.reloadData()
         selectedCells.removeAll(keepingCapacity: false)
+        controlSelectedCountandChangeButtonStatus() 
     }
     
 }
 
-// MARK: - Navigation Bar and Collection View Arrangaments
+// MARK: - ????
 private extension RecordedDataViewController {
     final func setupNavigationBar() {
         navigationItem.title = "Tüm Kayıtlar"
@@ -101,10 +121,8 @@ private extension RecordedDataViewController {
         
         let deleteIcon = UIImage(systemName: "trash")
         let editIcon = UIImage(systemName: "pencil")
-        let deleteButton = UIBarButtonItem(image: deleteIcon, style: .plain, target: self, action: #selector(deleteTapped))
-
-        let editButton = UIBarButtonItem(image: editIcon, style: .plain, target: self, action: #selector(deleteTapped))
-
+        deleteButton = UIBarButtonItem(image: deleteIcon, style: .plain, target: self, action: #selector(deleteTapped))
+        editButton = UIBarButtonItem(image: editIcon, style: .plain, target: self, action: #selector(deleteTapped))
         navigationItem.rightBarButtonItems = [deleteButton, editButton]
     }
     @objc func deleteTapped() {
@@ -129,5 +147,26 @@ private extension RecordedDataViewController {
         collectionView.register(cellType: RecordedDataCollectionViewCell.self)
     }
     
+    func updateButtonStates() {
+        deleteButton.isEnabled = areDeleteEnabled
+        editButton.isEnabled = areEditEnabled
+    }
+    
+    func controlSelectedCountandChangeButtonStatus() {
+    
+        if selectedCells.count == 1  {
+            areEditEnabled = true
+            areDeleteEnabled = true
+        } else if selectedCells.count > 1 {
+            areEditEnabled = false
+            areDeleteEnabled = true
+        }
+        else {
+            areEditEnabled = false
+            areDeleteEnabled = false
+        }
+        
+        updateButtonStates()
+    }
 
 }
