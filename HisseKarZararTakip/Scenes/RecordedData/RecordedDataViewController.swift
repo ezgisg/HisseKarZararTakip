@@ -57,7 +57,7 @@ extension RecordedDataViewController: UICollectionViewDelegate {
             if cell.contentView.backgroundColor == .lightGray {
                 cell.contentView.backgroundColor = .white
                 selectedCells.remove(indexPath)
-                viewModel.deleteShares(share: viewModel.allRecordedShares?[indexPath.row])
+               
             } else {
                 cell.contentView.backgroundColor = .lightGray
                 selectedCells.insert(indexPath)
@@ -83,6 +83,7 @@ extension RecordedDataViewController: RecordedDataViewModelDelegate {
     func getRecords() {
 //        collectionView.reloadSections([0])
         collectionView.reloadData()
+        selectedCells.removeAll(keepingCapacity: false)
     }
     
 }
@@ -90,13 +91,30 @@ extension RecordedDataViewController: RecordedDataViewModelDelegate {
 // MARK: - Navigation Bar and Collection View Arrangaments
 private extension RecordedDataViewController {
     final func setupNavigationBar() {
-        navigationItem.title = "Kayıtlarım"
+        navigationItem.title = "Tüm Kayıtlar"
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
             .foregroundColor: UIColor.black,
             .font: UIFont.systemFont(ofSize: 24, weight: .bold)
         ]
         navigationController?.navigationBar.standardAppearance = appearance
+        
+        let deleteIcon = UIImage(systemName: "trash")
+        let editIcon = UIImage(systemName: "pencil")
+        let deleteButton = UIBarButtonItem(image: deleteIcon, style: .plain, target: self, action: #selector(deleteTapped))
+
+        let editButton = UIBarButtonItem(image: editIcon, style: .plain, target: self, action: #selector(deleteTapped))
+
+        navigationItem.rightBarButtonItems = [deleteButton, editButton]
+    }
+    @objc func deleteTapped() {
+        var selectedShareModels = [SavedShareModel]()
+        for selectedCell in selectedCells {
+            guard let shareModel = viewModel.allRecordedShares?[selectedCell.row] else {return}
+            selectedShareModels.append(shareModel)
+        }
+        viewModel.deleteShares(shares: selectedShareModels)
+        
     }
     
     final func collectionViewConfiguration() {
@@ -110,4 +128,6 @@ private extension RecordedDataViewController {
         collectionView.collectionViewLayout = flowLayout
         collectionView.register(cellType: RecordedDataCollectionViewCell.self)
     }
+    
+
 }

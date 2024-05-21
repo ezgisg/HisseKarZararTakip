@@ -9,7 +9,7 @@ import Foundation
 
 protocol RecordedDataViewModelProtocol {
     func fetchShares()
-    func deleteShares(share: SavedShareModel?)
+    func deleteShares(shares: [SavedShareModel]?)
     var allRecordedShares: [SavedShareModel]? {get}
 
 
@@ -24,6 +24,8 @@ protocol  RecordedDataViewModelDelegate {
 
 class RecordedDataViewModel: RecordedDataViewModelProtocol {
 
+    
+
     var delegate: RecordedDataViewModelDelegate?
     private var shareRepository = ShareRepository()
     var allRecordedShares: [SavedShareModel]?
@@ -37,9 +39,9 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
         }
     }
     
-    func deleteShares(share: SavedShareModel?) {
-        guard let share else {return}
-        shareRepository.deleteShare(share: share) { [weak self] in
+    func deleteShares(shares: [SavedShareModel]? ) {
+        guard let shares else {return}
+        shareRepository.deleteShare(shares: shares) { [weak self] in
             guard let self else { return }
             self.fetchShares()
         }

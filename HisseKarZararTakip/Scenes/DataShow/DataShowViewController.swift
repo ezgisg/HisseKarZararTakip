@@ -53,14 +53,14 @@ extension DataShowViewController:  UICollectionViewDataSource {
 private extension DataShowViewController {
     
    final func setupNavigationBar() {
-        navigationItem.title = "Hisselerim"
+        navigationItem.title = "Hisselerim Özet"
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
             .foregroundColor: UIColor.black,
             .font: UIFont.systemFont(ofSize: 24, weight: .bold)
         ]
         navigationController?.navigationBar.standardAppearance = appearance
-        let rightBarButton = UIBarButtonItem(title: "Detail", style: .plain, target: self, action: #selector(goToNextScreen))
+        let rightBarButton = UIBarButtonItem(title: "Tüm Kayıtlar", style: .plain, target: self, action: #selector(goToNextScreen))
             navigationItem.rightBarButtonItem = rightBarButton
     }
     

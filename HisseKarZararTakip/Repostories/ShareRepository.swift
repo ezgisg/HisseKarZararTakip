@@ -12,32 +12,34 @@ import CoreData
 protocol ShareRepositoryProtocol {
     func saveShare(model: SavedShareModel) -> Bool
     func fetchShares(completion: @escaping ([SavedShareModel]?) -> () )
-    func deleteShare(share: SavedShareModel, completion:  @escaping () -> ())
+    func deleteShare(shares: [SavedShareModel], completion:  @escaping () -> ())
 }
 
 
 class ShareRepository: ShareRepositoryProtocol {
-    func deleteShare(share: SavedShareModel, completion: @escaping () -> ()) {
-        let viewContext = appDelegate?.persistentContainer.viewContext
-        guard let viewContext else {return}
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "SavedShare")
-        guard let uuid = share.uuid as? NSUUID else {return}
-        fetchRequest.predicate = NSPredicate(format: "uuid == %@", uuid)
-        
-        do {
-            if let results = try viewContext.fetch(fetchRequest) as? [NSManagedObject] {
-                for result in results {
-                    viewContext.delete(result)
+    func deleteShare(shares: [SavedShareModel], completion: @escaping () -> ()) {
+        for share in shares {
+            let viewContext = appDelegate?.persistentContainer.viewContext
+            guard let viewContext else {return}
+            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "SavedShare")
+            guard let uuid = share.uuid as? NSUUID else {return}
+            fetchRequest.predicate = NSPredicate(format: "uuid == %@", uuid)
+            
+            do {
+                if let results = try viewContext.fetch(fetchRequest) as? [NSManagedObject] {
+                    for result in results {
+                        viewContext.delete(result)
+                    }
+//                    completion()
                 }
-                completion()
+            
+            } catch {
+                //TO DO: Make alert
+                print("***** \(share.uuid?.uuidString ?? "unknown uuid") core datadan silinemedi *****")
+//                completion()
             }
-        
-        } catch {
-            //TO DO: Make alert
-            print("***** \(share.uuid?.uuidString ?? "unknown uuid") core datadan silinemedi *****")
-            completion()
         }
-        
+        completion()
     }
     
     
