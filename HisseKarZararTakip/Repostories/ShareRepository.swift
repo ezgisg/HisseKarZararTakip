@@ -13,7 +13,7 @@ protocol ShareRepositoryProtocol {
     func saveShare(model: SavedShareModel) -> Bool
     func fetchShares(completion: @escaping ([SavedShareModel]?) -> () )
     func deleteShare(shares: [SavedShareModel], completion:  @escaping () -> ())
-    func updateShare(shareUUID: UUID, newCount:  Double?, newPrice: Double?, newCommission: Double?, completion:  @escaping (_ model: SavedShareModel?) -> ())
+    func updateShare(shareUUID: UUID, newCount:  Double?, newPrice: Double?, newCommission: Double?, completion:  @escaping () -> ())
 }
 
 
@@ -111,7 +111,7 @@ class ShareRepository: ShareRepositoryProtocol {
    
     }
     
-    func updateShare(shareUUID: UUID, newCount: Double?, newPrice: Double?, newCommission: Double?, completion: @escaping (_ model: SavedShareModel?) -> ()) {
+    func updateShare(shareUUID: UUID, newCount: Double?, newPrice: Double?, newCommission: Double?, completion: @escaping () -> ()) {
         
         let viewContext = appDelegate?.persistentContainer.viewContext
         guard let viewContext else {return}
@@ -145,20 +145,12 @@ class ShareRepository: ShareRepositoryProtocol {
                 
                 result.setValue(total, forKey: "total")
             
-            var shareModel = SavedShareModel()
-            shareModel.name = result.value(forKey: "name") as? String
-            shareModel.count = result.value(forKey: "count") as? Double
-            shareModel.price = result.value(forKey: "price") as? Double
-            shareModel.commission = result.value(forKey: "commission") as? Double
-            shareModel.total = result.value(forKey: "total") as? Double
-            shareModel.uuid = result.value(forKey: "uuid") as? UUID
-         
-            completion(shareModel)
+            completion()
             
         } catch  {
             //TO DO: Make alert
             print("***** \(uuid) uuidli elemanda core datada değişiklik yapılamadı *****")
-            completion(nil)
+            completion()
         }
 
  

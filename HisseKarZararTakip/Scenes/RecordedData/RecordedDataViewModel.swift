@@ -8,11 +8,13 @@
 import Foundation
 
 protocol RecordedDataViewModelProtocol {
-    func fetchShares()
+    func getAllShares()
+    func getAllSharesAfterUpdateShare()
     func deleteShares(shares: [SavedShareModel]?)
     func updateShare(uuid: UUID, newCount: Double?, newPrice: Double?, newCommission: Double? )
-    func controlSelectedCountandChangeButtonStatus(count: Int, completion: (_ isEditButtonEnabled: Bool, _ isDeleteButtonEnabled: Bool) -> ())
-    func filterRecords(searchText: String?)
+    func controlSelectedCountandChangeButtonStatus(count: Int, completion: (ButtonStatusModel) -> ())
+    func filterRecordsWithWhenSearchTextChanged(searchText: String?)
+    func filterAfterUpdateShare(searchText: String?)
     var allRecordedShares: [SavedShareModel]? {get}
     var filteredRecordedShares: [SavedShareModel]? {get}
     
@@ -22,6 +24,8 @@ protocol RecordedDataViewModelProtocol {
 protocol  RecordedDataViewModelDelegate {
     func getRecords()
     func reloadCollectionView()
+    func filterWithSearchText()
+
 }
 
 
@@ -32,12 +36,13 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
     var allRecordedShares: [SavedShareModel]?
     var filteredRecordedShares: [SavedShareModel]?
     
-    func fetchShares() {
+    func getAllShares() {
         shareRepository.fetchShares { [weak self] shares in
             guard let self else {return}
             allRecordedShares = shares
             filteredRecordedShares = allRecordedShares
             delegate?.getRecords()
+            delegate?.filterWithSearchText()
         }
     }
     
@@ -45,38 +50,42 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
         guard let shares else {return}
         shareRepository.deleteShare(shares: shares) { [weak self] in
             guard let self else { return }
-            self.fetchShares()
+            self.getAllShares()
         }
     }
     
     func updateShare(uuid: UUID, newCount: Double?, newPrice: Double?, newCommission: Double?) {
-        shareRepository.updateShare(shareUUID: uuid, newCount: newCount, newPrice: newPrice, newCommission: newCommission) { [weak self] model in
-            guard let self else { return }
-            guard let model, let changedElementUUID = model.uuid else { return }
-            if let index = self.filteredRecordedShares?.firstIndex(where: { $0.uuid == changedElementUUID }) {
-                    self.filteredRecordedShares?[index] = model
-                }
-            if let index = self.allRecordedShares?.firstIndex(where: { $0.uuid == changedElementUUID }) {
-                    self.allRecordedShares?[index] = model
-                }
-            delegate?.reloadCollectionView()
+        shareRepository.updateShare(shareUUID: uuid, newCount: newCount, newPrice: newPrice, newCommission: newCommission) { [weak self] in
+            guard let self else {return}
+            self.getAllSharesAfterUpdateShare()
         }
     }
     
-    
-    func controlSelectedCountandChangeButtonStatus(count: Int, completion: (Bool, Bool) -> ()) {
-            if count == 1  {
-               completion(true, true)
-            } else if count > 1 {
-                completion(false, true)
-            }
-            else {
-                completion(false, false)
-            }
+    func getAllSharesAfterUpdateShare() {
+        shareRepository.fetchShares { [weak self] shares in
+            guard let self else {return}
+            allRecordedShares = shares
+            delegate?.filterWithSearchText()
+        }
     }
     
+    func controlSelectedCountandChangeButtonStatus(count: Int, completion: (ButtonStatusModel) -> ()) {
+        var buttonStatus = ButtonStatusModel()
+        if count == 1  {
+            buttonStatus.isDeleteButtonEnabled = true
+            buttonStatus.isEditButtonEnabled = true
+        } else if count > 1 {
+            buttonStatus.isDeleteButtonEnabled = true
+            buttonStatus.isEditButtonEnabled = false
+        }
+        else {
+            buttonStatus.isDeleteButtonEnabled = false
+            buttonStatus.isEditButtonEnabled = false
+        }
+        completion(buttonStatus)
+    }
     
-    func filterRecords(searchText: String?) {
+    func filterRecordsWithWhenSearchTextChanged(searchText: String?) {
         if (searchText?.count ?? 0) > 3 {
             filteredRecordedShares = allRecordedShares?.filter { share in
                 return share.name?.lowercased().contains(searchText?.lowercased() ?? "") ?? false
@@ -89,6 +98,19 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
             }
         }
     }
+    
+    func filterAfterUpdateShare(searchText: String?) {
+        guard searchText != "",
+        let searchText else {
+            filteredRecordedShares = allRecordedShares
+            delegate?.reloadCollectionView()
+            return
+        }
+        filteredRecordedShares = allRecordedShares?.filter { share in
+            return share.name?.lowercased().contains(searchText.lowercased()) ?? false
+        }
+        delegate?.reloadCollectionView()
+    }
+    
+    
 }
-
-

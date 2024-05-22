@@ -41,6 +41,8 @@
 		AB9E6C252BFC8A6C001B8579 /* RecordedDataCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9E6C242BFC8A6C001B8579 /* RecordedDataCollectionViewCell.xib */; };
 		AB9E6C262BFC8A6C001B8579 /* RecordedDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E6C232BFC8A6C001B8579 /* RecordedDataCollectionViewCell.swift */; };
 		AB9E6C282BFC9B65001B8579 /* RecordedDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E6C272BFC9B65001B8579 /* RecordedDataViewModel.swift */; };
+		AB9F84342BFE471E00A83E77 /* ButtonStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F84332BFE471E00A83E77 /* ButtonStatusModel.swift */; };
+		AB9F84362BFE4B8300A83E77 /* UpdatedShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F84352BFE4B8300A83E77 /* UpdatedShareModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		AB9E6C232BFC8A6C001B8579 /* RecordedDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedDataCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB9E6C242BFC8A6C001B8579 /* RecordedDataCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordedDataCollectionViewCell.xib; sourceTree = "<group>"; };
 		AB9E6C272BFC9B65001B8579 /* RecordedDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedDataViewModel.swift; sourceTree = "<group>"; };
+		AB9F84332BFE471E00A83E77 /* ButtonStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStatusModel.swift; sourceTree = "<group>"; };
+		AB9F84352BFE4B8300A83E77 /* UpdatedShareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedShareModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,7 @@
 		AB98B9562BF4D06F005665FB /* HisseKarZararTakip */ = {
 			isa = PBXGroup;
 			children = (
+				AB9F84322BFE467400A83E77 /* Utilities */,
 				AB9451592BF78A2C00D65FC2 /* Cell */,
 				AB9451522BF75ECF00D65FC2 /* Extensions */,
 				AB9C923F2BF628EF00993A2B /* Model */,
@@ -286,6 +291,15 @@
 				AB9E6C272BFC9B65001B8579 /* RecordedDataViewModel.swift */,
 			);
 			path = RecordedData;
+			sourceTree = "<group>";
+		};
+		AB9F84322BFE467400A83E77 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AB9F84332BFE471E00A83E77 /* ButtonStatusModel.swift */,
+				AB9F84352BFE4B8300A83E77 /* UpdatedShareModel.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,6 +456,8 @@
 				AB9C92412BF6298A00993A2B /* SavedShareModel.swift in Sources */,
 				AB94515C2BF78A5400D65FC2 /* ShareCollectionViewCell.swift in Sources */,
 				AB98B98F2BF4D1DF005665FB /* ShareDetailList.swift in Sources */,
+				AB9F84342BFE471E00A83E77 /* ButtonStatusModel.swift in Sources */,
+				AB9F84362BFE4B8300A83E77 /* UpdatedShareModel.swift in Sources */,
 				AB98B9622BF4D06F005665FB /* HisseKarZararTakip.xcdatamodeld in Sources */,
 				AB98B9A42BF4DA8F005665FB /* TabBarController.swift in Sources */,
 				AB98B9A02BF4D7F5005665FB /* DataShowViewController.swift in Sources */,

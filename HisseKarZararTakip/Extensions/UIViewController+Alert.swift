@@ -22,11 +22,10 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func getDataAlert(model: SavedShareModel , message: String, button1Title: String = "Vazgeç", button2Title: String = "Değiştir",  completion: ((UUID, Double?, Double?, Double?) -> Void)?)  {
+    func getDataAlert(model: SavedShareModel , message: String, button1Title: String = "Vazgeç", button2Title: String = "Değiştir",  completion: @escaping ((UpdatedShareModel) -> Void))  {
+        guard let uuid = model.uuid else { return }
         
         let alertController = UIAlertController(title: model.name , message: message, preferredStyle: .alert)
-        
- 
         alertController.addTextField { textField in
             textField.placeholder = "Adet: \(model.count ?? 0)"
         }
@@ -37,20 +36,19 @@ extension UIViewController {
             textField.placeholder = "Komisyon: \(model.commission ?? 0)"
         }
         
-
-
         let firstAction = UIAlertAction(title: button1Title, style: .default)
         let secondAction = UIAlertAction(title: button2Title, style: .default) { _ in
-            guard let uuid = model.uuid else { return }
+            //TO DO: Double a dönüştürülemeyen hiçbir data kaydedilemiyor ancak kaydedilemediğine dair uyarı çıkmıyor, eklenebilir
             let newCount = Double(alertController.textFields?[0].text ?? "")
             let newPrice = Double(alertController.textFields?[1].text ?? "")
             let newCommission = Double(alertController.textFields?[2].text ?? "")
-            completion?(uuid, newCount, newPrice, newCommission)
+            let updatedShare = UpdatedShareModel(uuid: uuid, newCount: newCount, newPrice: newPrice, newCommission: newCommission)
+            completion(updatedShare)
         }
         
         alertController.addAction(firstAction)
         alertController.addAction(secondAction)
-
+        
         self.present(alertController, animated: true, completion: nil)
             
     }
