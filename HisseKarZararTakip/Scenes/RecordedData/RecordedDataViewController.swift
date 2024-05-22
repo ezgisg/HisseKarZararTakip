@@ -33,11 +33,12 @@ class RecordedDataViewController: UIViewController {
         viewModel.delegate = self
         setupNavigationBar()
         collectionViewConfiguration()
-       
+   
    
     }
     override func viewWillAppear(_ animated: Bool) {
         viewModel.fetchShares()
+        
     }
 
 }
@@ -84,9 +85,10 @@ extension RecordedDataViewController: UICollectionViewDelegate {
 // MARK: - RecordedDataViewModelDelegate
 
 extension RecordedDataViewController: RecordedDataViewModelDelegate {
-    func filterRecords() {
+    func reloadCollectionView() {
         collectionView.reloadData()
     }
+    
     func getRecords() {
 //        collectionView.reloadSections([0])
         collectionView.reloadData()
@@ -108,18 +110,27 @@ private extension RecordedDataViewController {
         let deleteIcon = UIImage(systemName: "trash")
         let editIcon = UIImage(systemName: "pencil")
         deleteButton = UIBarButtonItem(image: deleteIcon, style: .plain, target: self, action: #selector(deleteTapped))
-        editButton = UIBarButtonItem(image: editIcon, style: .plain, target: self, action: #selector(deleteTapped))
+        editButton = UIBarButtonItem(image: editIcon, style: .plain, target: self, action: #selector(editTapped))
         navigationItem.rightBarButtonItems = [deleteButton, editButton]
     }
     
     @objc func deleteTapped() {
         var selectedShareModels = [SavedShareModel]()
         for selectedCell in selectedCells {
-            guard let shareModel = viewModel.allRecordedShares?[selectedCell.row] else {return}
+            guard let shareModel = viewModel.filteredRecordedShares?[selectedCell.row] else {return}
             selectedShareModels.append(shareModel)
         }
         viewModel.deleteShares(shares: selectedShareModels)
         
+    }
+    
+    @objc func editTapped() {
+        guard let selectedCell = selectedCells.first,
+              let shareModel = viewModel.filteredRecordedShares?[selectedCell.row] else {return}
+        let message = "Kaydı değiştirmek için yeni değerleri giriniz"
+        getDataAlert(model: shareModel, message: message) { uuid, count, price, commission in
+            self.viewModel.updateShare(uuid: uuid, newCount: count, newPrice: price, newCommission: commission)
+        }
     }
     
     final func collectionViewConfiguration() {
@@ -148,3 +159,4 @@ extension RecordedDataViewController: UISearchBarDelegate {
         viewModel.filterRecords(searchText: searchText)
     }
 }
+

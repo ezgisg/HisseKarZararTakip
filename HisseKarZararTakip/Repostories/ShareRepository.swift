@@ -13,10 +13,12 @@ protocol ShareRepositoryProtocol {
     func saveShare(model: SavedShareModel) -> Bool
     func fetchShares(completion: @escaping ([SavedShareModel]?) -> () )
     func deleteShare(shares: [SavedShareModel], completion:  @escaping () -> ())
+    func updateShare(shareUUID: UUID, newCount:  Double?, newPrice: Double?, newCommission: Double?, completion:  @escaping (_ model: SavedShareModel?) -> ())
 }
 
 
 class ShareRepository: ShareRepositoryProtocol {
+    
     func deleteShare(shares: [SavedShareModel], completion: @escaping () -> ()) {
         for share in shares {
             let viewContext = appDelegate?.persistentContainer.viewContext
@@ -30,14 +32,11 @@ class ShareRepository: ShareRepositoryProtocol {
                     for result in results {
                         viewContext.delete(result)
                     }
-                    
-//                    completion()
                 }
             
             } catch {
                 //TO DO: Make alert
                 print("***** \(share.uuid?.uuidString ?? "unknown uuid") core datadan silinemedi *****")
-//                completion()
             }
         }
         completion()
@@ -110,6 +109,59 @@ class ShareRepository: ShareRepositoryProtocol {
             completion([])
         }
    
+    }
+    
+    func updateShare(shareUUID: UUID, newCount: Double?, newPrice: Double?, newCommission: Double?, completion: @escaping (_ model: SavedShareModel?) -> ()) {
+        
+        let viewContext = appDelegate?.persistentContainer.viewContext
+        guard let viewContext else {return}
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "SavedShare")
+        let uuid = shareUUID as NSUUID
+        fetchRequest.predicate = NSPredicate(format: "uuid == %@", uuid)
+        
+        do {
+               let results = try viewContext.fetch(fetchRequest) as? [NSManagedObject]
+               guard let result = results?.first else { return }
+            
+                if let newCount {
+                    result.setValue(newCount, forKey: "count")
+                }
+                if let newPrice {
+                    result.setValue(newPrice, forKey: "price")
+                }
+                if let newCommission {
+                    result.setValue(newCommission, forKey: "commission")
+                }
+                
+                let currentPrice = result.value(forKey:"price") as? Double
+                let currentCount = result.value(forKey:"count") as? Double
+                let currentCommission = result.value(forKey:"commission") as? Double
+                
+                guard let currentPrice,
+                      let currentCount,
+                      let currentCommission else {return}
+                
+                let total = currentPrice * currentCount + currentCommission
+                
+                result.setValue(total, forKey: "total")
+            
+            var shareModel = SavedShareModel()
+            shareModel.name = result.value(forKey: "name") as? String
+            shareModel.count = result.value(forKey: "count") as? Double
+            shareModel.price = result.value(forKey: "price") as? Double
+            shareModel.commission = result.value(forKey: "commission") as? Double
+            shareModel.total = result.value(forKey: "total") as? Double
+            shareModel.uuid = result.value(forKey: "uuid") as? UUID
+         
+            completion(shareModel)
+            
+        } catch  {
+            //TO DO: Make alert
+            print("***** \(uuid) uuidli elemanda core datada değişiklik yapılamadı *****")
+            completion(nil)
+        }
+
+ 
     }
     
 }

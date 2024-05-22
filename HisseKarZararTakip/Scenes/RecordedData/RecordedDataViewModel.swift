@@ -10,6 +10,7 @@ import Foundation
 protocol RecordedDataViewModelProtocol {
     func fetchShares()
     func deleteShares(shares: [SavedShareModel]?)
+    func updateShare(uuid: UUID, newCount: Double?, newPrice: Double?, newCommission: Double? )
     func controlSelectedCountandChangeButtonStatus(count: Int, completion: (_ isEditButtonEnabled: Bool, _ isDeleteButtonEnabled: Bool) -> ())
     func filterRecords(searchText: String?)
     var allRecordedShares: [SavedShareModel]? {get}
@@ -20,7 +21,7 @@ protocol RecordedDataViewModelProtocol {
 // MARK: -  RecordedDataViewModelDelegate
 protocol  RecordedDataViewModelDelegate {
     func getRecords()
-    func filterRecords()
+    func reloadCollectionView()
 }
 
 
@@ -35,9 +36,8 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
         shareRepository.fetchShares { [weak self] shares in
             guard let self else {return}
             allRecordedShares = shares
-            filteredRecordedShares = shares
+            filteredRecordedShares = allRecordedShares
             delegate?.getRecords()
-  
         }
     }
     
@@ -48,6 +48,21 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
             self.fetchShares()
         }
     }
+    
+    func updateShare(uuid: UUID, newCount: Double?, newPrice: Double?, newCommission: Double?) {
+        shareRepository.updateShare(shareUUID: uuid, newCount: newCount, newPrice: newPrice, newCommission: newCommission) { [weak self] model in
+            guard let self else { return }
+            guard let model, let changedElementUUID = model.uuid else { return }
+            if let index = self.filteredRecordedShares?.firstIndex(where: { $0.uuid == changedElementUUID }) {
+                    self.filteredRecordedShares?[index] = model
+                }
+            if let index = self.allRecordedShares?.firstIndex(where: { $0.uuid == changedElementUUID }) {
+                    self.allRecordedShares?[index] = model
+                }
+            delegate?.reloadCollectionView()
+        }
+    }
+    
     
     func controlSelectedCountandChangeButtonStatus(count: Int, completion: (Bool, Bool) -> ()) {
             if count == 1  {
@@ -68,8 +83,12 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
             }
             delegate?.getRecords()
         } else {
-            filteredRecordedShares = allRecordedShares
-            delegate?.filterRecords()
+            if filteredRecordedShares != allRecordedShares {
+                filteredRecordedShares = allRecordedShares
+                delegate?.getRecords()
+            }
         }
     }
 }
+
+

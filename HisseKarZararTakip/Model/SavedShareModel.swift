@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SavedShareModel: Decodable {
+struct SavedShareModel: Decodable, Equatable {
     var name: String?
     var count: Double?
     var price: Double?

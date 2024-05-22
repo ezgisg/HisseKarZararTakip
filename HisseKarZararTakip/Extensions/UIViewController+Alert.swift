@@ -22,6 +22,39 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    func getDataAlert(model: SavedShareModel , message: String, button1Title: String = "Vazgeç", button2Title: String = "Değiştir",  completion: ((UUID, Double?, Double?, Double?) -> Void)?)  {
+        
+        let alertController = UIAlertController(title: model.name , message: message, preferredStyle: .alert)
+        
+ 
+        alertController.addTextField { textField in
+            textField.placeholder = "Adet: \(model.count ?? 0)"
+        }
+        alertController.addTextField { textField in
+            textField.placeholder = "Maliyet: \(model.price ?? 0)"
+        }
+        alertController.addTextField { textField in
+            textField.placeholder = "Komisyon: \(model.commission ?? 0)"
+        }
+        
+
+
+        let firstAction = UIAlertAction(title: button1Title, style: .default)
+        let secondAction = UIAlertAction(title: button2Title, style: .default) { _ in
+            guard let uuid = model.uuid else { return }
+            let newCount = Double(alertController.textFields?[0].text ?? "")
+            let newPrice = Double(alertController.textFields?[1].text ?? "")
+            let newCommission = Double(alertController.textFields?[2].text ?? "")
+            completion?(uuid, newCount, newPrice, newCommission)
+        }
+        
+        alertController.addAction(firstAction)
+        alertController.addAction(secondAction)
+
+        self.present(alertController, animated: true, completion: nil)
+            
+    }
+    
 }
 
 
