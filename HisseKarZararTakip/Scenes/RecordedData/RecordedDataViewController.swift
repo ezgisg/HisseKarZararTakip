@@ -9,21 +9,21 @@ import UIKit
 
 class RecordedDataViewController: UIViewController {
 
-    //TO DO: breaking constraint ler düzeltilecek
-    //TO DO: ekranda alfabetik sıralama ile sıralanması sağlanacak
+    //TODO: breaking constraint ler düzeltilecek
+    //TODO: ekranda alfabetik sıralama ile sıralanması sağlanacak
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var deleteButton = UIBarButtonItem()
-    var editButton = UIBarButtonItem()
-    let viewModel = RecordedDataViewModel()
-    var selectedCellsUUID = Set<UUID>() {
+    private var deleteButton = UIBarButtonItem()
+    private var editButton = UIBarButtonItem()
+    private let viewModel = RecordedDataViewModel()
+    private var selectedCellsUUID = Set<UUID>() {
         didSet {
             selectedCount = selectedCellsUUID.count
         }
     }
-    var selectedCount: Int = 0 {
+    private var selectedCount: Int = 0 {
         didSet {
             updateButtonStates()
         }
@@ -35,72 +35,16 @@ class RecordedDataViewController: UIViewController {
         viewModel.delegate = self
         setupNavigationBar()
         setupSearchBar()
-        collectionViewConfiguration()
+        configureCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.getAllShares()
-    }
-    
-}
-
-// MARK: - UICollectionViewDataSource
-extension RecordedDataViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.filteredRecordedShares?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeCell(cellType: RecordedDataCollectionViewCell.self, indexPath: indexPath)
-        cell.configure(data: viewModel.filteredRecordedShares?[indexPath.row])
-        return cell
+        super.viewWillAppear(animated)
+        viewModel.getShares(willSelectClear: true)
     }
 }
 
-// MARK: - UICollectionViewDelegate
-extension RecordedDataViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let uuid = viewModel.filteredRecordedShares?[indexPath.row].uuid,
-              let cell = collectionView.cellForItem(at: indexPath) else { return }
-            if cell.contentView.backgroundColor == .lightGray {
-                selectedCellsUUID.remove(uuid)
-                cell.contentView.backgroundColor = .white
-            } else {
-                selectedCellsUUID.insert(uuid)
-                cell.contentView.backgroundColor = .lightGray
-            }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let uuid = viewModel.filteredRecordedShares?[indexPath.row].uuid else { return }
-        if selectedCellsUUID.contains(uuid){
-            cell.contentView.backgroundColor = .lightGray
-        } else {
-            cell.contentView.backgroundColor = .white
-        }
-    }
-    
-}
-
-// MARK: - RecordedDataViewModelDelegate
-extension RecordedDataViewController: RecordedDataViewModelDelegate {
- 
-    func filterWithSearchText() {
-        viewModel.filterAfterUpdateShare(searchText: searchBar.text)
-    }
-    func reloadCollectionView() {
-        collectionView.reloadData()
-    }
-    func getRecords() {
-//        collectionView.reloadSections([0])
-        selectedCellsUUID.removeAll(keepingCapacity: false)
-        collectionView.reloadData()
-    }
-    
-}
-
-// MARK: - Setup Functions for Screen Components
+// MARK: - Configuration
 private extension RecordedDataViewController {
     final func setupNavigationBar() {
         navigationItem.title = "Tüm Kayıtlar"
@@ -118,7 +62,7 @@ private extension RecordedDataViewController {
         navigationItem.rightBarButtonItems = [deleteButton, editButton]
     }
     
-    final func collectionViewConfiguration() {
+    final func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         let flowLayout = UICollectionViewFlowLayout()
@@ -148,14 +92,16 @@ private extension RecordedDataViewController {
         guard let selectedCellUUID = selectedCellsUUID.first,
               let shareModel = viewModel.filteredRecordedShares?.first(where: { $0.uuid == selectedCellUUID}) else { return }
         let message = "Kaydı değiştirmek için yeni değerleri giriniz"
-        getDataAlert(model: shareModel, message: message) { updatedShare in
+        getDataAlert(model: shareModel, message: message) { [weak self] updatedShare in
+            guard let self else { return }
             self.viewModel.updateShare(uuid: updatedShare.uuid, newCount: updatedShare.newCount, newPrice: updatedShare.newPrice, newCommission: updatedShare.newCommission)
         }
     }
     
     final func updateButtonStates() {
-        viewModel.controlSelectedCountandChangeButtonStatus(count: selectedCount) { buttonStatus in
-            guard let isEditButtonEnabled = buttonStatus.isEditButtonEnabled,
+        viewModel.controlSelectedCountandChangeButtonStatus(count: selectedCount) { [weak self] buttonStatus in
+            guard let self,
+                  let isEditButtonEnabled = buttonStatus.isEditButtonEnabled,
                   let isDeleteButtonEnabled = buttonStatus.isDeleteButtonEnabled else { return }
             editButton.isEnabled = isEditButtonEnabled
             deleteButton.isEnabled = isDeleteButtonEnabled
@@ -167,6 +113,57 @@ private extension RecordedDataViewController {
         searchBar.placeholder = "Arama için en az 4 karakter giriniz."
     }
     
+}
+
+
+// MARK: - UICollectionViewDataSource
+extension RecordedDataViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.filteredRecordedShares?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeCell(cellType: RecordedDataCollectionViewCell.self, indexPath: indexPath)
+        cell.configure(with: viewModel.filteredRecordedShares?[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension RecordedDataViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let uuid = viewModel.filteredRecordedShares?[indexPath.row].uuid,
+              let cell = collectionView.cellForItem(at: indexPath) else { return }
+            if cell.contentView.backgroundColor == .lightGray {
+                selectedCellsUUID.remove(uuid)
+                cell.contentView.backgroundColor = .white
+            } else {
+                selectedCellsUUID.insert(uuid)
+                cell.contentView.backgroundColor = .lightGray
+            }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let uuid = viewModel.filteredRecordedShares?[indexPath.row].uuid else { return }
+        cell.contentView.backgroundColor = selectedCellsUUID.contains(uuid) ? .lightGray : .white
+    }
+    
+}
+
+// MARK: - RecordedDataViewModelDelegate
+extension RecordedDataViewController: RecordedDataViewModelDelegate {
+ 
+    func filterWithSearchText() {
+        viewModel.filterAfterUpdateShare(searchText: searchBar.text)
+    }
+    func reloadCollectionView() {
+        collectionView.reloadData()
+    }
+    func reloadView() {
+//      collectionView.reloadSections([0])
+        selectedCellsUUID.removeAll(keepingCapacity: false)
+        collectionView.reloadData()
+    }
 }
 
 // MARK: - UISearchBarDelegate

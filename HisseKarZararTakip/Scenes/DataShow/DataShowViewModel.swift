@@ -101,7 +101,7 @@ class DataShowViewModel: DataShowViewModelProtocol {
                 guard let data = data.chart?.result?[0].meta?.regularMarketPrice else {return completion(0)}
                completion(data)
             case .failure(_):
-                //TO DO: Alert
+                //TODO: Alert
                 completion(0)
                 print("***** Error happened when fetching price service data for \(stockName)*****")
             }

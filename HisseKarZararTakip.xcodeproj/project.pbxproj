@@ -175,9 +175,8 @@
 		AB98B9562BF4D06F005665FB /* HisseKarZararTakip */ = {
 			isa = PBXGroup;
 			children = (
+				AB9BA4A82BFE7DE600A70AD9 /* Components */,
 				AB9F84322BFE467400A83E77 /* Utilities */,
-				AB9451592BF78A2C00D65FC2 /* Cell */,
-				AB9451522BF75ECF00D65FC2 /* Extensions */,
 				AB9C923F2BF628EF00993A2B /* Model */,
 				AB98B9A52BF4ED6A005665FB /* Repostories */,
 				AB98B9972BF4D79A005665FB /* Scenes */,
@@ -274,11 +273,37 @@
 			path = Repostories;
 			sourceTree = "<group>";
 		};
+		AB9BA4A62BFE7D9D00A70AD9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AB9A6BB92BFB3CAE00E69E6B /* TotalShareModel.swift */,
+				AB9C92402BF6298A00993A2B /* SavedShareModel.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AB9BA4A72BFE7DAE00A70AD9 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				AB9F84332BFE471E00A83E77 /* ButtonStatusModel.swift */,
+				AB9F84352BFE4B8300A83E77 /* UpdatedShareModel.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		AB9BA4A82BFE7DE600A70AD9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AB9451592BF78A2C00D65FC2 /* Cell */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		AB9C923F2BF628EF00993A2B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AB9C92402BF6298A00993A2B /* SavedShareModel.swift */,
-				AB9A6BB92BFB3CAE00E69E6B /* TotalShareModel.swift */,
+				AB9BA4A72BFE7DAE00A70AD9 /* Content */,
+				AB9BA4A62BFE7D9D00A70AD9 /* Data */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,9 +311,9 @@
 		AB9E6C1E2BFC8180001B8579 /* RecordedData */ = {
 			isa = PBXGroup;
 			children = (
+				AB9E6C272BFC9B65001B8579 /* RecordedDataViewModel.swift */,
 				AB9E6C1F2BFC81C2001B8579 /* RecordedDataViewController.swift */,
 				AB9E6C202BFC81C2001B8579 /* RecordedDataViewController.xib */,
-				AB9E6C272BFC9B65001B8579 /* RecordedDataViewModel.swift */,
 			);
 			path = RecordedData;
 			sourceTree = "<group>";
@@ -296,8 +321,7 @@
 		AB9F84322BFE467400A83E77 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				AB9F84332BFE471E00A83E77 /* ButtonStatusModel.swift */,
-				AB9F84352BFE4B8300A83E77 /* UpdatedShareModel.swift */,
+				AB9451522BF75ECF00D65FC2 /* Extensions */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";

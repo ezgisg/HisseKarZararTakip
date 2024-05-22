@@ -9,22 +9,34 @@ import Foundation
 import UIKit
 import CoreData
 
+enum ShareRepositoryKeys: String {
+    case name
+    case count
+    case price
+    case commission
+    case total
+    case uuid
+}
+
 protocol ShareRepositoryProtocol {
     func saveShare(model: SavedShareModel) -> Bool
     func fetchShares(completion: @escaping ([SavedShareModel]?) -> () )
     func deleteShare(shares: [SavedShareModel], completion:  @escaping () -> ())
-    func updateShare(shareUUID: UUID, newCount:  Double?, newPrice: Double?, newCommission: Double?, completion:  @escaping () -> ())
+    func updateShare(shareUUID: UUID, newCount:  Double?, newPrice: Double?, newCommission: Double?, completion: @escaping () -> ())
 }
 
-
 class ShareRepository: ShareRepositoryProtocol {
+    
+    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    var shares = [SavedShareModel]()
     
     func deleteShare(shares: [SavedShareModel], completion: @escaping () -> ()) {
         for share in shares {
             let viewContext = appDelegate?.persistentContainer.viewContext
-            guard let viewContext else {return}
+            guard let viewContext else { return }
+            
             let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "SavedShare")
-            guard let uuid = share.uuid as? NSUUID else {return}
+            guard let uuid = share.uuid as? NSUUID else { return }
             fetchRequest.predicate = NSPredicate(format: "uuid == %@", uuid)
             
             do {
@@ -33,30 +45,26 @@ class ShareRepository: ShareRepositoryProtocol {
                         viewContext.delete(result)
                     }
                 }
-            
             } catch {
-                //TO DO: Make alert
+                //TODO: Make alert
                 print("***** \(share.uuid?.uuidString ?? "unknown uuid") core datadan silinemedi *****")
             }
         }
         completion()
     }
-    
-    
-    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    var shares = [SavedShareModel]()
    
+    //TODO: saveshare yerine kayıt edilip edilmediğine göre boolean verdiği anlaşılacak bir isim verelim
     func saveShare(model: SavedShareModel) -> Bool {
         let viewContext = appDelegate?.persistentContainer.viewContext
-        guard let viewContext else {return false}
+        guard let viewContext else { return false }
         let newShare = NSEntityDescription.insertNewObject(forEntityName: "SavedShare", into: viewContext)
         
-        newShare.setValue(model.name, forKey: "name")
-        newShare.setValue(model.count, forKey: "count")
-        newShare.setValue(model.price, forKey: "price")
-        newShare.setValue(model.commission, forKey: "commission")
-        newShare.setValue(model.total, forKey: "total")
-        newShare.setValue(model.uuid, forKey: "uuid")
+        newShare.setValue(model.name, forKey: ShareRepositoryKeys.name.rawValue)
+        newShare.setValue(model.count, forKey: ShareRepositoryKeys.count.rawValue)
+        newShare.setValue(model.price, forKey: ShareRepositoryKeys.price.rawValue)
+        newShare.setValue(model.commission, forKey: ShareRepositoryKeys.commission.rawValue)
+        newShare.setValue(model.total, forKey: ShareRepositoryKeys.total.rawValue)
+        newShare.setValue(model.uuid, forKey: ShareRepositoryKeys.uuid.rawValue)
         
         if viewContext.hasChanges {
             do {
@@ -70,7 +78,6 @@ class ShareRepository: ShareRepositoryProtocol {
         }
         
         return false
-        
     }
     
     func fetchShares(completion: @escaping ([SavedShareModel]?) -> ()) {
@@ -85,12 +92,12 @@ class ShareRepository: ShareRepositoryProtocol {
             if results.count > 0 {
                 for result in results {
                     if let result = result as? NSManagedObject {
-                        guard let name = result.value(forKey: "name") as? String,
-                              let count = result.value(forKey: "count") as? Double,
-                              let price = result.value(forKey: "price") as? Double,
-                              let commission = result.value(forKey: "commission") as? Double,
-                              let total = result.value(forKey: "total") as? Double,
-                              let uuid = result.value(forKey: "uuid") as? UUID else { return }
+                        guard let name = result.value(forKey: ShareRepositoryKeys.name.rawValue) as? String,
+                              let count = result.value(forKey: ShareRepositoryKeys.count.rawValue) as? Double,
+                              let price = result.value(forKey: ShareRepositoryKeys.price.rawValue) as? Double,
+                              let commission = result.value(forKey: ShareRepositoryKeys.commission.rawValue) as? Double,
+                              let total = result.value(forKey: ShareRepositoryKeys.total.rawValue) as? Double,
+                              let uuid = result.value(forKey: ShareRepositoryKeys.uuid.rawValue) as? UUID else { return }
                         
                         let share = SavedShareModel(name: name, count: count, price: price, commission: commission, total: total, uuid: uuid)
                         shares.append(share)
@@ -104,7 +111,7 @@ class ShareRepository: ShareRepositoryProtocol {
             }
    
         } catch  {
-            //TO DO: Alert
+            //TODO: Alert
             print("***** CoreData dan data çekilemedi *****")
             completion([])
         }
@@ -114,7 +121,8 @@ class ShareRepository: ShareRepositoryProtocol {
     func updateShare(shareUUID: UUID, newCount: Double?, newPrice: Double?, newCommission: Double?, completion: @escaping () -> ()) {
         
         let viewContext = appDelegate?.persistentContainer.viewContext
-        guard let viewContext else {return}
+        guard let viewContext else { return }
+        
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "SavedShare")
         let uuid = shareUUID as NSUUID
         fetchRequest.predicate = NSPredicate(format: "uuid == %@", uuid)
@@ -148,7 +156,7 @@ class ShareRepository: ShareRepositoryProtocol {
             completion()
             
         } catch  {
-            //TO DO: Make alert
+            //TODO: Make alert
             print("***** \(uuid) uuidli elemanda core datada değişiklik yapılamadı *****")
             completion()
         }

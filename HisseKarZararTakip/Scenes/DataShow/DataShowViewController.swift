@@ -44,7 +44,7 @@ extension DataShowViewController:  UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeCell(cellType: ShareCollectionViewCell.self, indexPath: indexPath)
-        cell.configure(data: viewModel.sumRecordedShares?[indexPath.row])
+        cell.configure(with: viewModel.sumRecordedShares?[indexPath.row])
         return cell
     }
 }

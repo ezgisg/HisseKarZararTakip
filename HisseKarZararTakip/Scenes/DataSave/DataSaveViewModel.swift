@@ -55,7 +55,7 @@ class DataSaveViewModel: DataSaveViewModelProtocol {
                 self.delegate?.sendShareName()
                 
             case .failure(_):
-                //TO DO: Alert
+                //TODO: Alert
                 print("***** Error happened when fetching name service data *****")
             }
         })

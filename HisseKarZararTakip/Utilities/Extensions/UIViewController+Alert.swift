@@ -38,7 +38,7 @@ extension UIViewController {
         
         let firstAction = UIAlertAction(title: button1Title, style: .default)
         let secondAction = UIAlertAction(title: button2Title, style: .default) { _ in
-            //TO DO: Double a dönüştürülemeyen hiçbir data kaydedilemiyor ancak kaydedilemediğine dair uyarı çıkmıyor, eklenebilir
+            //TODO: Double a dönüştürülemeyen hiçbir data kaydedilemiyor ancak kaydedilemediğine dair uyarı çıkmıyor, eklenebilir
             let newCount = Double(alertController.textFields?[0].text ?? "")
             let newPrice = Double(alertController.textFields?[1].text ?? "")
             let newCommission = Double(alertController.textFields?[2].text ?? "")

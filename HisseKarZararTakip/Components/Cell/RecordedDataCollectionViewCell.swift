@@ -16,29 +16,26 @@ class RecordedDataCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
-        // Initialization code
     }
     
-    
-    func configure(data: SavedShareModel?) {
-        guard let data = data else { return }
+    func configure(with data: SavedShareModel?) {
+        guard let data else { return }
         nameLabel.text = data.name
         countLabel.text = "Alınan hisse: \(data.count?.formatStringLikeInteger() ?? "")"
         priceLabel.text = "Satın alım fiyatı: \(data.price?.formatString() ?? "")"
         commissionLabel.text = "Komisyon tutarı: \(data.commission?.formatString() ?? "")"
         totalLabel.text = "Toplam maliyet: \(data.total?.formatString() ?? "")"
-        
     }
-    
-    func setupUI() {
+}
+
+private extension RecordedDataCollectionViewCell {
+    final func setupUI() {
         containerView.layer.borderColor = UIColor.black.cgColor
         containerView.layer.borderWidth = 1
         containerView.layer.cornerRadius = 10
         widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
     }
-
 }
