@@ -12,7 +12,7 @@ class RecordedDataViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
- 
+    var filteredRecordedShares: [SavedShareModel]?
     let viewModel = RecordedDataViewModel()
     var selectedCells = Set<IndexPath>() {
         didSet {
@@ -23,11 +23,13 @@ class RecordedDataViewController: UIViewController {
     var editButton = UIBarButtonItem()
     var selectedCount: Int = 0 {
         didSet {
-            updateButtonStates()
+                updateButtonStates()
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
+        searchBar.placeholder = "Arama için en az 4 karakter giriniz."
         viewModel.delegate = self
         setupNavigationBar()
         collectionViewConfiguration()
@@ -44,16 +46,13 @@ class RecordedDataViewController: UIViewController {
 
 extension RecordedDataViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.allRecordedShares?.count ?? 0
-     
+        return viewModel.filteredRecordedShares?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeCell(cellType: RecordedDataCollectionViewCell.self, indexPath: indexPath)
-        cell.configure(data: viewModel.allRecordedShares?[indexPath.row])
+        cell.configure(data: viewModel.filteredRecordedShares?[indexPath.row])
         return cell
-      
     }
 }
 
@@ -71,9 +70,8 @@ extension RecordedDataViewController: UICollectionViewDelegate {
             }
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
         if selectedCells.contains(indexPath) {
             cell.contentView.backgroundColor = .lightGray
         } else {
@@ -86,14 +84,14 @@ extension RecordedDataViewController: UICollectionViewDelegate {
 // MARK: - RecordedDataViewModelDelegate
 
 extension RecordedDataViewController: RecordedDataViewModelDelegate {
-   
+    func filterRecords() {
+        collectionView.reloadData()
+    }
     func getRecords() {
 //        collectionView.reloadSections([0])
         collectionView.reloadData()
         selectedCells.removeAll(keepingCapacity: false)
-    
     }
-    
 }
 
 // MARK: - ????
@@ -113,6 +111,7 @@ private extension RecordedDataViewController {
         editButton = UIBarButtonItem(image: editIcon, style: .plain, target: self, action: #selector(deleteTapped))
         navigationItem.rightBarButtonItems = [deleteButton, editButton]
     }
+    
     @objc func deleteTapped() {
         var selectedShareModels = [SavedShareModel]()
         for selectedCell in selectedCells {
@@ -141,6 +140,11 @@ private extension RecordedDataViewController {
             deleteButton.isEnabled = isDeleteEnabled
         }
     }
-    
+}
 
+// MARK: - UISearchBarDelegate
+extension RecordedDataViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.filterRecords(searchText: searchText)
+    }
 }

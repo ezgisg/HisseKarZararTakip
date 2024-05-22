@@ -11,15 +11,16 @@ protocol RecordedDataViewModelProtocol {
     func fetchShares()
     func deleteShares(shares: [SavedShareModel]?)
     func controlSelectedCountandChangeButtonStatus(count: Int, completion: (_ isEditButtonEnabled: Bool, _ isDeleteButtonEnabled: Bool) -> ())
+    func filterRecords(searchText: String?)
     var allRecordedShares: [SavedShareModel]? {get}
-
-
+    var filteredRecordedShares: [SavedShareModel]? {get}
+    
 }
 
 // MARK: -  RecordedDataViewModelDelegate
 protocol  RecordedDataViewModelDelegate {
     func getRecords()
-
+    func filterRecords()
 }
 
 
@@ -28,12 +29,14 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
     var delegate: RecordedDataViewModelDelegate?
     private var shareRepository = ShareRepository()
     var allRecordedShares: [SavedShareModel]?
+    var filteredRecordedShares: [SavedShareModel]?
     
     func fetchShares() {
         shareRepository.fetchShares { [weak self] shares in
             guard let self else {return}
             allRecordedShares = shares
-            self.delegate?.getRecords()
+            filteredRecordedShares = shares
+            delegate?.getRecords()
   
         }
     }
@@ -57,6 +60,16 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
             }
     }
     
-
     
+    func filterRecords(searchText: String?) {
+        if (searchText?.count ?? 0) > 3 {
+            filteredRecordedShares = allRecordedShares?.filter { share in
+                return share.name?.lowercased().contains(searchText?.lowercased() ?? "") ?? false
+            }
+            delegate?.getRecords()
+        } else {
+            filteredRecordedShares = allRecordedShares
+            delegate?.filterRecords()
+        }
+    }
 }
