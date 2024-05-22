@@ -23,12 +23,9 @@ class RecordedDataViewController: UIViewController {
     var editButton = UIBarButtonItem()
     var selectedCount: Int = 0 {
         didSet {
-            controlSelectedCountandChangeButtonStatus()
+            updateButtonStates()
         }
     }
-    var areEditEnabled: Bool = false
-    var areDeleteEnabled: Bool = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
@@ -37,8 +34,6 @@ class RecordedDataViewController: UIViewController {
        
    
     }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         viewModel.fetchShares()
     }
@@ -141,25 +136,11 @@ private extension RecordedDataViewController {
     }
     
     func updateButtonStates() {
-        deleteButton.isEnabled = areDeleteEnabled
-        editButton.isEnabled = areEditEnabled
+        viewModel.controlSelectedCountandChangeButtonStatus(count: selectedCount) { isEditEnabled, isDeleteEnabled in
+            editButton.isEnabled = isEditEnabled
+            deleteButton.isEnabled = isDeleteEnabled
+        }
     }
     
-    func controlSelectedCountandChangeButtonStatus() {
-    
-        if selectedCells.count == 1  {
-            areEditEnabled = true
-            areDeleteEnabled = true
-        } else if selectedCells.count > 1 {
-            areEditEnabled = false
-            areDeleteEnabled = true
-        }
-        else {
-            areEditEnabled = false
-            areDeleteEnabled = false
-        }
-        
-        updateButtonStates()
-    }
 
 }

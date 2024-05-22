@@ -10,6 +10,7 @@ import Foundation
 protocol RecordedDataViewModelProtocol {
     func fetchShares()
     func deleteShares(shares: [SavedShareModel]?)
+    func controlSelectedCountandChangeButtonStatus(count: Int, completion: (_ isEditButtonEnabled: Bool, _ isDeleteButtonEnabled: Bool) -> ())
     var allRecordedShares: [SavedShareModel]? {get}
 
 
@@ -23,8 +24,6 @@ protocol  RecordedDataViewModelDelegate {
 
 
 class RecordedDataViewModel: RecordedDataViewModelProtocol {
-
-    
 
     var delegate: RecordedDataViewModelDelegate?
     private var shareRepository = ShareRepository()
@@ -46,5 +45,18 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
             self.fetchShares()
         }
     }
+    
+    func controlSelectedCountandChangeButtonStatus(count: Int, completion: (Bool, Bool) -> ()) {
+            if count == 1  {
+               completion(true, true)
+            } else if count > 1 {
+                completion(false, true)
+            }
+            else {
+                completion(false, false)
+            }
+    }
+    
+
     
 }
