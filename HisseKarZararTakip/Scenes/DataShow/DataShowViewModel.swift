@@ -11,8 +11,8 @@ protocol DataShowViewModelProtocol {
     func fetchShares(completion: @escaping ([String]) -> ())
     func getShareCurrentPrice(recordedShare: String, completion: @escaping (Double?) -> ())
     func calculateTotal()
-    var allRecordedShares: [SavedShareModel]? {get}
-    var sumRecordedShares: [TotalShareModel]? {get}
+    var allRecordedShares: [SavedShareModel] {get}
+    var sumRecordedShares: [TotalShareModel] {get}
     var recordedSharesNames: Set<String> {get set}
     
   
@@ -23,19 +23,19 @@ protocol DataShowViewModelDelegate {
 }
 
 class DataShowViewModel: DataShowViewModelProtocol {
-    var allRecordedShares: [SavedShareModel]? = [SavedShareModel]()
-    var recordedSharesNames: Set<String> =  Set<String>()
-    var sumRecordedShares: [TotalShareModel]? = [TotalShareModel]()
-    var service: ShareServiceProtocol? = ShareService()
+    var allRecordedShares: [SavedShareModel] = []
+    var recordedSharesNames = Set<String>()
+    var sumRecordedShares: [TotalShareModel] = []
+    var service: ShareServiceProtocol = ShareService()
     var delegate: DataShowViewModelDelegate?
-    private var shareRepository = ShareRepository()
+    private var shareRepository: ShareRepositoryProtocol = ShareRepository()
     
     func fetchShares(completion: @escaping ([String]) -> ()) {
         recordedSharesNames.removeAll(keepingCapacity: false)
         shareRepository.fetchShares { [weak self] shares in
-            guard let self = self else {return}
+            guard let self,
+                  let shares else {return}
             allRecordedShares = shares
-            guard let allRecordedShares = allRecordedShares else {return}
             for record in allRecordedShares {
                 guard let recordName = record.name else {return}
                 self.recordedSharesNames.insert(recordName)
@@ -47,38 +47,35 @@ class DataShowViewModel: DataShowViewModelProtocol {
     }
     
     func calculateTotal() {
-        sumRecordedShares?.removeAll(keepingCapacity: false)
+        sumRecordedShares.removeAll(keepingCapacity: false)
     
         fetchShares { recordedSharesNamesArray in
-
-            guard let allRecordedShares = self.allRecordedShares else {return}
             
             let group = DispatchGroup()
             
             for recordedName in recordedSharesNamesArray {
                 var sumRecordedShare: TotalShareModel = TotalShareModel()
-                for record in allRecordedShares {
+                for record in self.allRecordedShares {
                     if record.name == recordedName {
                         sumRecordedShare.name = record.name
                         sumRecordedShare.count = (sumRecordedShare.count ?? 0) + (record.count ?? 0)
                         sumRecordedShare.total = (sumRecordedShare.total ?? 0) + (record.total ?? 0)
                         sumRecordedShare.commission = (sumRecordedShare.commission ?? 0) + (record.commission ?? 0)
-
                     }
                 }
                 sumRecordedShare.avgPrice = (sumRecordedShare.total ?? 0) /  (sumRecordedShare.count ?? 0)
-          
+                
                 group.enter()
                 self.getShareCurrentPrice(recordedShare: recordedName) { currentPrice in
                     sumRecordedShare.currentPrice = currentPrice
-                    self.sumRecordedShares?.append(sumRecordedShare)
+                    self.sumRecordedShares.append(sumRecordedShare)
                     group.leave()
                 }
     
             }
    
             group.notify(queue: .main) {
-                self.sumRecordedShares?.sort {
+                self.sumRecordedShares.sort {
                          guard let name1 = $0.name, let name2 = $1.name else {
                              return $0.name != nil
                          }
@@ -92,8 +89,8 @@ class DataShowViewModel: DataShowViewModelProtocol {
     
     
     func getShareCurrentPrice(recordedShare: String, completion: @escaping (Double?) -> ()) {
-        let stockName = recordedShare
-        let urlString = "https://query1.finance.yahoo.com/v8/finance/chart/\(stockName).IS?region=US&lang=en-US&includePrePost=false&interval=2m&useYfid=true&range=1d&corsDomain=finance.yahoo.com&.tsrc=finance"
+        let shareName = recordedShare
+        let urlString = "https://query1.finance.yahoo.com/v8/finance/chart/\(shareName).IS?region=US&lang=en-US&includePrePost=false&interval=2m&useYfid=true&range=1d&corsDomain=finance.yahoo.com&.tsrc=finance"
         let service: ShareServiceProtocol? = ShareService()
         service?.fetchServiceData(urlString: urlString, completion: { (response: Result<ShareDetailList, Error>) in
             switch response {
@@ -103,7 +100,7 @@ class DataShowViewModel: DataShowViewModelProtocol {
             case .failure(_):
                 //TODO: Alert
                 completion(0)
-                print("***** Error happened when fetching price service data for \(stockName)*****")
+                print("***** Error happened when fetching price service data for \(shareName)*****")
             }
         })
         

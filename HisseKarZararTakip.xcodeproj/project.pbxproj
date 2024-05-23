@@ -43,6 +43,9 @@
 		AB9E6C282BFC9B65001B8579 /* RecordedDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9E6C272BFC9B65001B8579 /* RecordedDataViewModel.swift */; };
 		AB9F84342BFE471E00A83E77 /* ButtonStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F84332BFE471E00A83E77 /* ButtonStatusModel.swift */; };
 		AB9F84362BFE4B8300A83E77 /* UpdatedShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F84352BFE4B8300A83E77 /* UpdatedShareModel.swift */; };
+		ABACA2632BFF335100C9F513 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABACA2612BFF335100C9F513 /* DetailViewController.swift */; };
+		ABACA2642BFF335100C9F513 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABACA2622BFF335100C9F513 /* DetailViewController.xib */; };
+		ABACA2682BFF337600C9F513 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABACA2672BFF337600C9F513 /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +104,9 @@
 		AB9E6C272BFC9B65001B8579 /* RecordedDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedDataViewModel.swift; sourceTree = "<group>"; };
 		AB9F84332BFE471E00A83E77 /* ButtonStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStatusModel.swift; sourceTree = "<group>"; };
 		AB9F84352BFE4B8300A83E77 /* UpdatedShareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedShareModel.swift; sourceTree = "<group>"; };
+		ABACA2612BFF335100C9F513 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		ABACA2622BFF335100C9F513 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		ABACA2672BFF337600C9F513 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +237,7 @@
 				AB98B9A22BF4DA55005665FB /* TabBar */,
 				AB9E6C1E2BFC8180001B8579 /* RecordedData */,
 				AB98B9992BF4D7BC005665FB /* DataShow */,
+				ABACA25C2BFF313600C9F513 /* DataDetail */,
 				AB98B9982BF4D7A3005665FB /* DataSave */,
 			);
 			path = Scenes;
@@ -324,6 +331,16 @@
 				AB9451522BF75ECF00D65FC2 /* Extensions */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		ABACA25C2BFF313600C9F513 /* DataDetail */ = {
+			isa = PBXGroup;
+			children = (
+				ABACA2612BFF335100C9F513 /* DetailViewController.swift */,
+				ABACA2622BFF335100C9F513 /* DetailViewController.xib */,
+				ABACA2672BFF337600C9F513 /* DetailViewModel.swift */,
+			);
+			path = DataDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +457,7 @@
 				AB98B9642BF4D070005665FB /* Assets.xcassets in Resources */,
 				AB9E6C252BFC8A6C001B8579 /* RecordedDataCollectionViewCell.xib in Resources */,
 				AB98B9672BF4D070005665FB /* Base in Resources */,
+				ABACA2642BFF335100C9F513 /* DetailViewController.xib in Resources */,
 				AB9E6C212BFC81C2001B8579 /* RecordedDataViewController.xib in Resources */,
 				AB98B9A12BF4D7F5005665FB /* DataShowViewController.xib in Resources */,
 				AB94515D2BF78A5400D65FC2 /* ShareCollectionViewCell.xib in Resources */,
@@ -470,12 +488,14 @@
 			files = (
 				AB9A6BBD2BFB704000E69E6B /* Number+Extensions.swift in Sources */,
 				AB9A6BBA2BFB3CAE00E69E6B /* TotalShareModel.swift in Sources */,
+				ABACA2632BFF335100C9F513 /* DetailViewController.swift in Sources */,
 				AB9E6C282BFC9B65001B8579 /* RecordedDataViewModel.swift in Sources */,
 				AB9C92432BF637EE00993A2B /* DataShowViewModel.swift in Sources */,
 				AB9C923E2BF6289700993A2B /* ShareRepository.swift in Sources */,
 				AB98B9582BF4D06F005665FB /* AppDelegate.swift in Sources */,
 				AB98B9A72BF502BD005665FB /* DataSaveViewModel.swift in Sources */,
 				AB9451582BF789F800D65FC2 /* UICollectionView+Extensions.swift in Sources */,
+				ABACA2682BFF337600C9F513 /* DetailViewModel.swift in Sources */,
 				AB9451562BF789C100D65FC2 /* UICollectionViewCell+Extensions.swift in Sources */,
 				AB9C92412BF6298A00993A2B /* SavedShareModel.swift in Sources */,
 				AB94515C2BF78A5400D65FC2 /* ShareCollectionViewCell.swift in Sources */,

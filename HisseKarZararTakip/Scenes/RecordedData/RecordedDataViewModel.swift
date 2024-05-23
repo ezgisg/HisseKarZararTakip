@@ -56,7 +56,7 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
             guard let self else {return}
             allRecordedShares = shares
             if willSelectClear {
-                filteredRecordedShares = allRecordedShares
+                filteredRecordedShares = sortShareModelArray(shares: allRecordedShares)
                 delegate?.reloadView()
             }
             delegate?.filterWithSearchText()
@@ -77,9 +77,11 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
             filteredRecordedShares = allRecordedShares?.filter { share in
                 return share.name?.lowercased().contains(searchText?.lowercased() ?? "") ?? false
             }
+            filteredRecordedShares = sortShareModelArray(shares: filteredRecordedShares)
             delegate?.reloadView()
         } else if filteredRecordedShares != allRecordedShares {
             filteredRecordedShares = allRecordedShares
+            filteredRecordedShares = sortShareModelArray(shares: filteredRecordedShares)
             delegate?.reloadView()
         }
     }
@@ -88,12 +90,24 @@ class RecordedDataViewModel: RecordedDataViewModelProtocol {
         guard let searchText,
               !searchText.isEmpty else {
             filteredRecordedShares = allRecordedShares
+            filteredRecordedShares = sortShareModelArray(shares: filteredRecordedShares)
             delegate?.reloadCollectionView()
             return
         }
         filteredRecordedShares = allRecordedShares?.filter { share in
             return share.name?.lowercased().contains(searchText.lowercased()) ?? false
         }
+        filteredRecordedShares = sortShareModelArray(shares: filteredRecordedShares)
         delegate?.reloadCollectionView()
     }
+    
+    func sortShareModelArray(shares: [SavedShareModel]?) -> ([SavedShareModel]?) {
+        guard let shares else { return nil }
+        let  filteredRecordedShares = shares.sorted {
+            ($0.name ?? "") < ($1.name ?? "")
+        }
+        return filteredRecordedShares
+    }
 }
+
+

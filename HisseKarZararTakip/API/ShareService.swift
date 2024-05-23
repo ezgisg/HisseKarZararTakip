@@ -21,9 +21,10 @@ class ShareService: ShareServiceProtocol {
                 do {
                     let dataResponse =  try decoder.decode(T.self, from: data)
                     completion(.success(dataResponse))
-                } catch  {
+                } catch {
                     //TODO: ALERT
-                    print("*****JSON DECODE ERROR*****")
+                    let error = response.error
+                    print("*****JSON DECODE ERROR \(String(describing: error))*****")
                 }
             case .failure(let error):
                 completion(.failure(error))

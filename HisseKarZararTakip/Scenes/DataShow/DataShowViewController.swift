@@ -39,13 +39,24 @@ extension DataShowViewController: DataShowViewModelDelegate {
 // MARK: - UICollectionViewDataSource
 extension DataShowViewController:  UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.sumRecordedShares?.count ?? 0
+        return viewModel.sumRecordedShares.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeCell(cellType: ShareCollectionViewCell.self, indexPath: indexPath)
-        cell.configure(with: viewModel.sumRecordedShares?[indexPath.row])
+        cell.configure(with: viewModel.sumRecordedShares[indexPath.row])
         return cell
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegate
+extension DataShowViewController:  UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let shareName = viewModel.sumRecordedShares[indexPath.row].name else { return }
+        let detailVC = DetailViewController()
+        detailVC.viewModel = DetailViewModel(name: shareName)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
@@ -65,12 +76,13 @@ private extension DataShowViewController {
     }
     
     @objc func goToNextScreen() {
-         let secondViewController = RecordedDataViewController()
-         navigationController?.pushViewController(secondViewController, animated: true)
+         let recordsViewController = RecordedDataViewController()
+         navigationController?.pushViewController(recordsViewController, animated: true)
      }
     
     final func collectionvViewConfiguration() {
         collectionView.dataSource = self
+        collectionView.delegate = self
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         collectionView.collectionViewLayout = flowLayout
