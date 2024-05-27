@@ -10,7 +10,6 @@ import UIKit
 class RecordedDataViewController: UIViewController {
 
     //TODO: breaking constraint ler düzeltilecek
-    //TODO: ekranda alfabetik sıralama ile sıralanması sağlanacak
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!

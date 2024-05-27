@@ -7,6 +7,8 @@
 
 import UIKit
 
+//TODO: Animation will be added
+
 class DataShowViewController: UIViewController {
     
     // MARK: - Variables
@@ -53,11 +55,25 @@ extension DataShowViewController:  UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension DataShowViewController:  UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let shareName = viewModel.sumRecordedShares[indexPath.row].name else { return }
-        let detailVC = DetailViewController()
-        detailVC.viewModel = DetailViewModel(name: shareName)
-        navigationController?.pushViewController(detailVC, animated: true)
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        
+        UIView.animate(withDuration: 0.1) {
+            cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        } completion: { _ in
+            
+            UIView.animate(withDuration: 0.1) {
+                cell.transform = CGAffineTransform.identity
+            } completion: { _ in
+                guard let shareName = self.viewModel.sumRecordedShares[indexPath.row].name else { return }
+                let detailVC = DetailViewController()
+                detailVC.viewModel = DetailViewModel(name: shareName)
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }
+            
+        }
     }
+
 }
 
 // MARK: - Actions
